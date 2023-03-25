@@ -1,0 +1,18 @@
+Create table users
+(
+uid int(3) primary key,
+name varchar(10),
+password varchar(10),
+bid1 int(3) foreign key,
+borrow_date1 date,
+return_date1 date,
+bid2 int(3) foreign key,
+borrow_date2 date,
+return_date2 date,
+bid3 int(3) foreign key,
+borrow_date3 date,
+return_date3 date,
+bid4 int(3) foreign key,
+borrow_date4 date,
+return_date4 date,
+);
