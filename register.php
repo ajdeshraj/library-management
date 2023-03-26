@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -8,7 +11,7 @@
         <link rel="stylesheet" href="register.css">
     </head>
     <body>
-        <form action="login.php" method="post" onsubmit="return validate();"> 
+        <form action="register.php" method="post" onsubmit="return validate();"> 
             <input type="text" required name="username" id="username" placeholder="Username">
             <label for="username" id="username_msg"></label>
             <br>
@@ -79,6 +82,7 @@
                             echo "Username already taken.<br>";
                             return;
                         }
+
                         // Automatically assign User ID
                         if($row["user_id"]>$user_id)
                         {
@@ -87,14 +91,18 @@
                     }
                 }
 
+                $_SESSION["user_id"] = $user_id;
+
                 $stmt = $conn->prepare("INSERT INTO users (user_id, username, password, num_borrowed) VALUES (?, ?, ?, ?)");
                 $stmt->bind_param("issi", $user_id, $username, $password, $num_borrowed);
                 $stmt->execute();
-
-                echo("Successfully registered.<br>");
+            
                 $stmt->close();
                 $conn->close();
-            } 
+
+                header("Location: /user_dashboard.php");
+                exit;
+            }
         ?>
     </body>
 </html>
