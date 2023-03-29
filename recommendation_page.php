@@ -104,6 +104,13 @@
             {
                 echo "No Recommendations Available<br>";
             }
+
+            $user_query->close();
+            $other_query->close();
+            $sim_query->close();
+            $user_sim_query->close();
+            $book_query->close();
+            $conn->close();
         ?>
     </body>
 </html>
