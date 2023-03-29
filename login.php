@@ -23,31 +23,30 @@ session_start();
         <?php
             if(isset($_POST['submit']))
             {
-                $username=$_GET["username"];
-                $password=$_GET["password"];
+                $username=$_POST["username"];
+                $password=$_POST["password"];
                 $num_borrowed=0;
 
-                $conn = new mysqli($servername, $username, $password, $dbname);
+                // MYSQLi connections
+                $conn = new mysqli("localhost", "root", "", "LibSys");
                 if($conn->connect_error)
                 {
                     die("Connection failed: ".$conn->connect_error."<br>");
                 }
 
-                $select = "SELECT user_id, username, password FROM users";
-                $result = $conn->query($select);
+                // Authenticating and redirecting
+                $select = "SELECT user_id, username, pw FROM users WHERE username=? AND pw=?";
+                $stmt = $conn->prepare($select); 
+                $stmt->bind_param("ss", $username, $password);
+                $stmt->execute();
+                $result = $stmt->get_result();
                 if ($result->num_rows>0) 
                 {
-                    while($row = $result->fetch_assoc())
-                    {
-                        if($row["username"]===$username&&$row["password"]===$password)
-                        {
-                            $_SESSION["user_id"] = $row["user_id"];
-                            $stmt->close();
-                            $conn->close();
-                            header("Location: /user_dashboard.php");
-                            exit;
-                        }
-                    }
+                    $_SESSION["user_id"] = $row["user_id"];
+                    $stmt->close();
+                    $conn->close();
+                    header("Location: /LibSys/user_dashboard.php");
+                    exit;
                 }
                 $stmt->close();
                 $conn->close();

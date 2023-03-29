@@ -35,6 +35,7 @@ session_start();
                 {
                     document.getElementById("username_msg").innerHTML="Invalid username";
                     document.getElementById("username_msg").style.color=red;
+                    wait(1000);
                     return false;
                 }
 
@@ -44,12 +45,14 @@ session_start();
                 {
                     document.getElementById("password1_msg").innerHTML="Invalid Password";
                     document.getElementById("password1_msg").style.color=red;
+                    wait(1000);
                     return false;
                 }
                 else if(!(password1===password2))
                 {
                     document.getElementById("password1_msg").innerHTML="Passwords do not match";
                     document.getElementById("password1_msg").style.color=red;
+                    wait(1000);
                     return false;
                 }
             
@@ -59,48 +62,40 @@ session_start();
         <?php
             if(isset($_POST['submit']))
             {
-                $username=$_GET["username"];
-                $password=$_GET["password1"];
+                $username=$_POST["username"];
+                $password=$_POST["password1"];
                 $num_borrowed=0;
 
-                $conn = new mysqli($servername, $username, $password, $dbname);
+                // MYSQLi connection
+                $conn = new mysqli("localhost", "root", "", "LibSys");
                 if($conn->connect_error)
                 {
                     die("Connection failed: ".$conn->connect_error."<br>");
                 }
 
-                $select = "SELECT user_id, username FROM users";
+                $select = "SELECT max(user_id) as max_id FROM users";
                 $result = $conn->query($select);
                 $user_id = 1;
                 if ($result->num_rows>0) 
                 {
                     while($row = $result->fetch_assoc())
                     {
-                        // Check if username already exists
-                        if($row["username"]===$username)
-                        {
-                            echo "Username already taken.<br>";
-                            return;
-                        }
-
                         // Automatically assign User ID
-                        if($row["user_id"]>$user_id)
-                        {
-                            $user_id=$row["user_id"]+1;
-                        }
+                        $user_id=$row["max_id"]+1;
                     }
                 }
 
                 $_SESSION["user_id"] = $user_id;
-
-                $stmt = $conn->prepare("INSERT INTO users (user_id, username, password, num_borrowed) VALUES (?, ?, ?, ?)");
+                
+                // Insert new user into database
+                $stmt = $conn->prepare("INSERT INTO users (user_id, username, pw, num_borrowed) VALUES (?, ?, ?, ?)");
                 $stmt->bind_param("issi", $user_id, $username, $password, $num_borrowed);
                 $stmt->execute();
             
                 $stmt->close();
                 $conn->close();
 
-                header("Location: /user_dashboard.php");
+                header("Location: /LibSys/user_dashboard.php");
                 exit;
             }
         ?>

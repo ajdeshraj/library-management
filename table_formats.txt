@@ -1,8 +1,8 @@
 create table users
 (
 user_id int(3) primary key,
-username varchar(20),
-password varchar(20),
+username varchar(20) unique,
+pw varchar(20),
 num_borrowed int(1) default 0
 );
 
