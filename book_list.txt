@@ -1,100 +1,100 @@
-0, "Meditations", "Marcus Aurelius"
-1, "Jonathan Livingston Seagull", "Richard Bach"
-2, "Power of Habit", "Charles Duhigg"
-3, "Atomic Habits", "James Clear"
-4, "Endure: Mind, Body, and the Curiously Elastic Limits of Human Performance", "Alex Hutchinson"
-5, "Outliers", "Malcolm Gladwell"
-6, "Open", "Andre Agassi"
-7, "Rafa: My Story", "Rafael Nadal"
-8, "No Limits: The Will to Succeed", "Michael Phelps"
-9, "The Race of My Life", "Milkha Singh"
-10, "Playing it My Way", "Sachin Tendulkar"
-11, "No Spin", "Shane Warne"
-12, "How to Build a Car", "Adrian Newey"
-13, "Shoe Dog", "Phil Knight"
-14, "Pour Your Heart Into It", "Howard Schultz"
-15, "Grinding It Out", "Ray Kroc"
-16, "The 4-Hour Workweek", "Tim Ferris"
-17, "Rich Dad Poor Dad", "Robert Kiyosaki"
-18, "Steve Jobs", "Walter Isaacson"
-19, "Thinking Fast and Slow ...in 30 Minutes", "Daniel Kahneman"
-20, "The Art of War", "Sun Tzu"
-21, "Essentialism: The Disciplined Pursuit of Less", "Greg McKeown"
-22, "1984", "George Orwell"
-23, "What if?", "Randall Munroe"
-24, "What if 2?", "Randall Munroe"
-25, "How to?", "Randall Munroe"
-26, "Sapiens", "Yuval Noah Harari"
-27, "Homo Deus", "Yuval Noah Harari"
-28, "How to Drive", "Ben Collins"
-29, "The Hitchhiker's Guide to the Galaxy", "Douglas Adams"
-30, "Eat That Frog", "Brian Tracy"
-31, "The Alchemist", "Paulo Coelho"
-32, "Moby Dick", "Herman Melville"
-33, "20,000 Leagues Under The Sea", "Jules Verne"
-34, "Around The World in 80 Days", "Jules Verne"
-35, "Journey To The Center of the Earth", "Jules Verne"
-36, "Gulliver's Travels", "Jonathan Swift"
-37, "To Kill A Mockingbird", "Harper Lee"
-38, "Little Women", "Louisa May Alcott"
-39, "Wuthering Heights", "Emily Bronte"
-40, "The Catcher in the Rye", "J.D. Salinger"
-41, "Catch-22", "Joseph Heller"
-42, "Pride and Prejudice", "Jane Austen"
-43, "Adventures of Huckleberry Finn", "Mark Twain"
-44, "Animal Farm", "George Orwell"
-45, "Angels and Demons", "Dan Brown"
-46, "The Da Vinci Code", "Dan Brown"
-47, "Harry Potter and the Philosopher's Stone", "J.K. Rowling"
-48, "Harry Potter and the Chamber of Secrets", "J.K. Rowling"
-49, "Harry Potter and the Prisoner of Azkaban", "J.K. Rowling"
-50, "Harry Potter and the Goblet of Fire", "J.K. Rowling"
-51, "Harry Potter and the Order of the Phoenix", "J.K. Rowling"
-52, "Harry Potter and the Half-Blood Prince", "J.K. Rowling"
-53, "Harry Potter and the Deathly Hallows", "J.K. Rowling"
-54, "Percy Jackson and the Lightning Thief", "Rick Riordan"
-55, "Percy Jackson and the Sea of Monsters", "Rick Riordan"
-56, "Percy Jackson and the Titan's Curse", "Rick Riordan"
-57, "Percy Jackson and the Battle of the Labryinth", "Rick Riordan"
-58, "Percy Jackson and the Last Olympian", "Rick Riordan"
-59, "The Hunger Games", "Suzanne Collins"
-60, "The Hunger Games: Catching Fire", "Suzanne Collins"
-61, "The Hunger Games: Mockingjay", "Suzanne Collins"
-62, "The Hobbit", "J.R.R. Tolkien"
-63, "The Lord of the Rings", "J.R.R. Tolkien"
-64, "Great Expectations", "Charles Dickens"
-65, "Crime and Punishment" "Fyodor Dostoyevsky"
-66, "Don Quixote", "Miguel de Cervantes"
-67, "Farhenheit 451", "Ray Bradbury"
-68, "War and Peace", "Leo Tolstoy"
-69, "The Great Gatsby", "F. Scott Fitzgerald"
-70, "Invisible Man", Ralph Ellison"
-71, "Life of Pi", "Yann Martel"
-72, "101 Dalmations", "Justine Korman"
-73, "The Martian", "Andy Weir"
-74, "Gone Girl", "Gillian Flynn"
-75, "Jack Reacher: Killing Floor", "Lee Child"
-76, "Jack Reacher: Die Trying", "Lee Child"
-77, "Tintin: The Blue Lotus", "Herge"
-78, "Tintin: King Ottakar's Sceptre", "Herge"
-79, "Tintin: The Secret of the Unicorn", "Herge"
-80, "Tintin: Red Rackham's Treasure", "Herge"
-81, "Tintin: The Calculus Affair", "Herge"
-82, "Tintin: Flight 714 to Sydney", "Herge"
-83, "Asterix the Gaul", "Rene Goscinny"
-84, "Asterix in Corsica", "Rene Goscinny"
-85, "Asterix in Switzerland", "Rene Goscinny"
-86, "Asterix the Legionnary", "Rene Goscinny"
-87, "Asterix and the Banquet", "Rene Goscinny"
-88, "Asterix and Cleopatra", "Rene Goscinny"
-89, "Alex Rider: Stormbreaker", "Anthony Horowitz"
-90, "Alex Rider: Point Blanc", "Anthony Horowitz"
-91, "Alex Rider: Skeleton Key", "Anthony Horowitz"
-92, "Alex Rider: Eagle Strike", "Anthony Horowitz"
-93, "Alex Rider: Scorpia", "Anthony Horowitz"
-94, "Alex Rider: Ark Angel", "Anthony Horowitz"
-95, "Alex Rider: Snakehead", "Anthony Horowitz"
-96, "Alex Rider: Crocodile Tears", "Anthony Horowitz"
-97, "Alex Rider: Scorpia Rising", "Anthony Horowitz"
-98, "Alex Rider: Never Say Die", "Anthony Horowitz"
-99, "Alex Rider: Russian Roulette", "Anthony Horowitz"
+insert into book (book_id, title, author) values(0, "Meditations", "Marcus Aurelius");
+insert into book (book_id, title, author) values(1, "Jonathan Livingston Seagull", "Richard Bach");
+insert into book (book_id, title, author) values(2, "Power of Habit", "Charles Duhigg");
+insert into book (book_id, title, author) values(3, "Atomic Habits", "James Clear");
+insert into book (book_id, title, author) values(4, "Endure: Mind, Body, and the Curiously Elastic Limits of Human Performance", "Alex Hutchinson");
+insert into book (book_id, title, author) values(5, "Outliers", "Malcolm Gladwell");
+insert into book (book_id, title, author) values(6, "Open", "Andre Agassi");
+insert into book (book_id, title, author) values(7, "Rafa: My Story", "Rafael Nadal");
+insert into book (book_id, title, author) values(8, "No Limits: The Will to Succeed", "Michael Phelps");
+insert into book (book_id, title, author) values(9, "The Race of My Life", "Milkha Singh");
+insert into book (book_id, title, author) values(10, "Playing it My Way", "Sachin Tendulkar");
+insert into book (book_id, title, author) values(11, "No Spin", "Shane Warne");
+insert into book (book_id, title, author) values(12, "How to Build a Car", "Adrian Newey");
+insert into book (book_id, title, author) values(13, "Shoe Dog", "Phil Knight");
+insert into book (book_id, title, author) values(14, "Pour Your Heart Into It", "Howard Schultz");
+insert into book (book_id, title, author) values(15, "Grinding It Out", "Ray Kroc");
+insert into book (book_id, title, author) values(16, "The 4-Hour Workweek", "Tim Ferris");
+insert into book (book_id, title, author) values(17, "Rich Dad Poor Dad", "Robert Kiyosaki");
+insert into book (book_id, title, author) values(18, "Steve Jobs", "Walter Isaacson");
+insert into book (book_id, title, author) values(19, "Thinking Fast and Slow ...in 30 Minutes", "Daniel Kahneman");
+insert into book (book_id, title, author) values(20, "The Art of War", "Sun Tzu");
+insert into book (book_id, title, author) values(21, "Essentialism: The Disciplined Pursuit of Less", "Greg McKeown");
+insert into book (book_id, title, author) values(22, "1984", "George Orwell");
+insert into book (book_id, title, author) values(23, "What if?", "Randall Munroe");
+insert into book (book_id, title, author) values(24, "What if 2?", "Randall Munroe");
+insert into book (book_id, title, author) values(25, "How to?", "Randall Munroe");
+insert into book (book_id, title, author) values(26, "Sapiens", "Yuval Noah Harari");
+insert into book (book_id, title, author) values(27, "Homo Deus", "Yuval Noah Harari");
+insert into book (book_id, title, author) values(28, "How to Drive", "Ben Collins");
+insert into book (book_id, title, author) values(29, "The Hitchhiker's Guide to the Galaxy", "Douglas Adams");
+insert into book (book_id, title, author) values(30, "Eat That Frog", "Brian Tracy");
+insert into book (book_id, title, author) values(31, "The Alchemist", "Paulo Coelho");
+insert into book (book_id, title, author) values(32, "Moby Dick", "Herman Melville");
+insert into book (book_id, title, author) values(33, "20,000 Leagues Under The Sea", "Jules Verne");
+insert into book (book_id, title, author) values(34, "Around The World in 80 Days", "Jules Verne");
+insert into book (book_id, title, author) values(35, "Journey To The Center of the Earth", "Jules Verne");
+insert into book (book_id, title, author) values(36, "Gulliver's Travels", "Jonathan Swift");
+insert into book (book_id, title, author) values(37, "To Kill A Mockingbird", "Harper Lee");
+insert into book (book_id, title, author) values(38, "Little Women", "Louisa May Alcott");
+insert into book (book_id, title, author) values(39, "Wuthering Heights", "Emily Bronte");
+insert into book (book_id, title, author) values(40, "The Catcher in the Rye", "J.D. Salinger");
+insert into book (book_id, title, author) values(41, "Catch-22", "Joseph Heller");
+insert into book (book_id, title, author) values(42, "Pride and Prejudice", "Jane Austen");
+insert into book (book_id, title, author) values(43, "Adventures of Huckleberry Finn", "Mark Twain");
+insert into book (book_id, title, author) values(44, "Animal Farm", "George Orwell");
+insert into book (book_id, title, author) values(45, "Angels and Demons", "Dan Brown");
+insert into book (book_id, title, author) values(46, "The Da Vinci Code", "Dan Brown");
+insert into book (book_id, title, author) values(47, "Harry Potter and the Philosopher's Stone", "J.K. Rowling");
+insert into book (book_id, title, author) values(48, "Harry Potter and the Chamber of Secrets", "J.K. Rowling");
+insert into book (book_id, title, author) values(49, "Harry Potter and the Prisoner of Azkaban", "J.K. Rowling");
+insert into book (book_id, title, author) values(50, "Harry Potter and the Goblet of Fire", "J.K. Rowling");
+insert into book (book_id, title, author) values(51, "Harry Potter and the Order of the Phoenix", "J.K. Rowling");
+insert into book (book_id, title, author) values(52, "Harry Potter and the Half-Blood Prince", "J.K. Rowling");
+insert into book (book_id, title, author) values(53, "Harry Potter and the Deathly Hallows", "J.K. Rowling");
+insert into book (book_id, title, author) values(54, "Percy Jackson and the Lightning Thief", "Rick Riordan");
+insert into book (book_id, title, author) values(55, "Percy Jackson and the Sea of Monsters", "Rick Riordan");
+insert into book (book_id, title, author) values(56, "Percy Jackson and the Titan's Curse", "Rick Riordan");
+insert into book (book_id, title, author) values(57, "Percy Jackson and the Battle of the Labryinth", "Rick Riordan");
+insert into book (book_id, title, author) values(58, "Percy Jackson and the Last Olympian", "Rick Riordan");
+insert into book (book_id, title, author) values(59, "The Hunger Games", "Suzanne Collins");
+insert into book (book_id, title, author) values(60, "The Hunger Games: Catching Fire", "Suzanne Collins");
+insert into book (book_id, title, author) values(61, "The Hunger Games: Mockingjay", "Suzanne Collins");
+insert into book (book_id, title, author) values(62, "The Hobbit", "J.R.R. Tolkien");
+insert into book (book_id, title, author) values(63, "The Lord of the Rings", "J.R.R. Tolkien");
+insert into book (book_id, title, author) values(64, "Great Expectations", "Charles Dickens");
+insert into book (book_id, title, author) values(65, "Crime and Punishment" "Fyodor Dostoyevsky");
+insert into book (book_id, title, author) values(66, "Don Quixote", "Miguel de Cervantes");
+insert into book (book_id, title, author) values(67, "Farhenheit 451", "Ray Bradbury");
+insert into book (book_id, title, author) values(68, "War and Peace", "Leo Tolstoy");
+insert into book (book_id, title, author) values(69, "The Great Gatsby", "F. Scott Fitzgerald");
+insert into book (book_id, title, author) values(70, "Invisible Man", "Ralph Ellison");
+insert into book (book_id, title, author) values(71, "Life of Pi", "Yann Martel");
+insert into book (book_id, title, author) values(72, "101 Dalmations", "Justine Korman");
+insert into book (book_id, title, author) values(73, "The Martian", "Andy Weir");
+insert into book (book_id, title, author) values(74, "Gone Girl", "Gillian Flynn");
+insert into book (book_id, title, author) values(75, "Jack Reacher: Killing Floor", "Lee Child");
+insert into book (book_id, title, author) values(76, "Jack Reacher: Die Trying", "Lee Child");
+insert into book (book_id, title, author) values(77, "Tintin: The Blue Lotus", "Herge");
+insert into book (book_id, title, author) values(78, "Tintin: King Ottakar's Sceptre", "Herge");
+insert into book (book_id, title, author) values(79, "Tintin: The Secret of the Unicorn", "Herge");
+insert into book (book_id, title, author) values(80, "Tintin: Red Rackham's Treasure", "Herge");
+insert into book (book_id, title, author) values(81, "Tintin: The Calculus Affair", "Herge");
+insert into book (book_id, title, author) values(82, "Tintin: Flight 714 to Sydney", "Herge");
+insert into book (book_id, title, author) values(83, "Asterix the Gaul", "Rene Goscinny");
+insert into book (book_id, title, author) values(84, "Asterix in Corsica", "Rene Goscinny");
+insert into book (book_id, title, author) values(85, "Asterix in Switzerland", "Rene Goscinny");
+insert into book (book_id, title, author) values(86, "Asterix the Legionnary", "Rene Goscinny");
+insert into book (book_id, title, author) values(87, "Asterix and the Banquet", "Rene Goscinny");
+insert into book (book_id, title, author) values(88, "Asterix and Cleopatra", "Rene Goscinny");
+insert into book (book_id, title, author) values(89, "Alex Rider: Stormbreaker", "Anthony Horowitz");
+insert into book (book_id, title, author) values(90, "Alex Rider: Point Blanc", "Anthony Horowitz");
+insert into book (book_id, title, author) values(91, "Alex Rider: Skeleton Key", "Anthony Horowitz");
+insert into book (book_id, title, author) values(92, "Alex Rider: Eagle Strike", "Anthony Horowitz");
+insert into book (book_id, title, author) values(93, "Alex Rider: Scorpia", "Anthony Horowitz");
+insert into book (book_id, title, author) values(94, "Alex Rider: Ark Angel", "Anthony Horowitz");
+insert into book (book_id, title, author) values(95, "Alex Rider: Snakehead", "Anthony Horowitz");
+insert into book (book_id, title, author) values(96, "Alex Rider: Crocodile Tears", "Anthony Horowitz");
+insert into book (book_id, title, author) values(97, "Alex Rider: Scorpia Rising", "Anthony Horowitz");
+insert into book (book_id, title, author) values(98, "Alex Rider: Never Say Die", "Anthony Horowitz");
+insert into book (book_id, title, author) values(99, "Alex Rider: Russian Roulette", "Anthony Horowitz")
