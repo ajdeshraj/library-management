@@ -73,7 +73,7 @@
                 $result_other_sim = $conn->query($sim_query);
                 $other_sim_row = $result_other_sim->fetch_assoc();
 
-                if ($user_sim_row == 0 && $other_sim_row > 6 && in_array($id, $recommendation))
+                if ($user_sim_row == 0 && $other_sim_row > 6 && !in_array($id, $recommendation))
                 {
                     array_push($recommendation, $other_sim_row[$id]);
                 }
