@@ -31,4 +31,140 @@ create table ratings
 );
 
 
+desc user;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| user_id  | int         | NO   | PRI | NULL    |       |
+| username | varchar(40) | YES  | UNI | NULL    |       |
+| password | varchar(30) | NO   |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+
+desc book;
++---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| book_id       | int          | NO   | PRI | NULL    |       |
+| author        | varchar(40)  | YES  |     | NULL    |       |
+| avg_rating    | decimal(5,3) | YES  |     | 0.000   |       |
+| borrow_status | int          | YES  |     | 0       |       |
+| title         | varchar(90)  | YES  |     | NULL    |       |
++---------------+--------------+------+-----+---------+-------+
+
+desc borrow;
++-------------+------+------+-----+---------+-------+
+| Field       | Type | Null | Key | Default | Extra |
++-------------+------+------+-----+---------+-------+
+| user_id     | int  | YES  | MUL | NULL    |       |
+| book_id     | int  | YES  | MUL | NULL    |       |
+| date_borrow | date | NO   |     | NULL    |       |
+| date_return | date | NO   |     | NULL    |       |
++-------------+------+------+-----+---------+-------+
+
+desc ratings;
++---------+------+------+-----+---------+-------+
+| Field   | Type | Null | Key | Default | Extra |
++---------+------+------+-----+---------+-------+
+| user_id | int  | YES  | MUL | NULL    |       |
+| b0      | int  | YES  |     | 0       |       |
+| b1      | int  | YES  |     | 0       |       |
+| b2      | int  | YES  |     | 0       |       |
+| b3      | int  | YES  |     | 0       |       |
+| b4      | int  | YES  |     | 0       |       |
+| b5      | int  | YES  |     | 0       |       |
+| b6      | int  | YES  |     | 0       |       |
+| b7      | int  | YES  |     | 0       |       |
+| b8      | int  | YES  |     | 0       |       |
+| b9      | int  | YES  |     | 0       |       |
+| b10     | int  | YES  |     | 0       |       |
+| b11     | int  | YES  |     | 0       |       |
+| b12     | int  | YES  |     | 0       |       |
+| b13     | int  | YES  |     | 0       |       |
+| b14     | int  | YES  |     | 0       |       |
+| b15     | int  | YES  |     | 0       |       |
+| b16     | int  | YES  |     | 0       |       |
+| b17     | int  | YES  |     | 0       |       |
+| b18     | int  | YES  |     | 0       |       |
+| b19     | int  | YES  |     | 0       |       |
+| b20     | int  | YES  |     | 0       |       |
+| b21     | int  | YES  |     | 0       |       |
+| b22     | int  | YES  |     | 0       |       |
+| b23     | int  | YES  |     | 0       |       |
+| b24     | int  | YES  |     | 0       |       |
+| b25     | int  | YES  |     | 0       |       |
+| b26     | int  | YES  |     | 0       |       |
+| b27     | int  | YES  |     | 0       |       |
+| b28     | int  | YES  |     | 0       |       |
+| b29     | int  | YES  |     | 0       |       |
+| b30     | int  | YES  |     | 0       |       |
+| b31     | int  | YES  |     | 0       |       |
+| b32     | int  | YES  |     | 0       |       |
+| b33     | int  | YES  |     | 0       |       |
+| b34     | int  | YES  |     | 0       |       |
+| b35     | int  | YES  |     | 0       |       |
+| b36     | int  | YES  |     | 0       |       |
+| b37     | int  | YES  |     | 0       |       |
+| b38     | int  | YES  |     | 0       |       |
+| b39     | int  | YES  |     | 0       |       |
+| b40     | int  | YES  |     | 0       |       |
+| b41     | int  | YES  |     | 0       |       |
+| b42     | int  | YES  |     | 0       |       |
+| b43     | int  | YES  |     | 0       |       |
+| b44     | int  | YES  |     | 0       |       |
+| b45     | int  | YES  |     | 0       |       |
+| b46     | int  | YES  |     | 0       |       |
+| b47     | int  | YES  |     | 0       |       |
+| b48     | int  | YES  |     | 0       |       |
+| b49     | int  | YES  |     | 0       |       |
+| b50     | int  | YES  |     | 0       |       |
+| b51     | int  | YES  |     | 0       |       |
+| b52     | int  | YES  |     | 0       |       |
+| b53     | int  | YES  |     | 0       |       |
+| b54     | int  | YES  |     | 0       |       |
+| b55     | int  | YES  |     | 0       |       |
+| b56     | int  | YES  |     | 0       |       |
+| b57     | int  | YES  |     | 0       |       |
+| b58     | int  | YES  |     | 0       |       |
+| b59     | int  | YES  |     | 0       |       |
+| b60     | int  | YES  |     | 0       |       |
+| b61     | int  | YES  |     | 0       |       |
+| b62     | int  | YES  |     | 0       |       |
+| b63     | int  | YES  |     | 0       |       |
+| b64     | int  | YES  |     | 0       |       |
+| b65     | int  | YES  |     | 0       |       |
+| b66     | int  | YES  |     | 0       |       |
+| b67     | int  | YES  |     | 0       |       |
+| b68     | int  | YES  |     | 0       |       |
+| b69     | int  | YES  |     | 0       |       |
+| b70     | int  | YES  |     | 0       |       |
+| b71     | int  | YES  |     | 0       |       |
+| b72     | int  | YES  |     | 0       |       |
+| b73     | int  | YES  |     | 0       |       |
+| b74     | int  | YES  |     | 0       |       |
+| b75     | int  | YES  |     | 0       |       |
+| b76     | int  | YES  |     | 0       |       |
+| b77     | int  | YES  |     | 0       |       |
+| b78     | int  | YES  |     | 0       |       |
+| b79     | int  | YES  |     | 0       |       |
+| b80     | int  | YES  |     | 0       |       |
+| b81     | int  | YES  |     | 0       |       |
+| b82     | int  | YES  |     | 0       |       |
+| b83     | int  | YES  |     | 0       |       |
+| b84     | int  | YES  |     | 0       |       |
+| b85     | int  | YES  |     | 0       |       |
+| b86     | int  | YES  |     | 0       |       |
+| b87     | int  | YES  |     | 0       |       |
+| b88     | int  | YES  |     | 0       |       |
+| b89     | int  | YES  |     | 0       |       |
+| b90     | int  | YES  |     | 0       |       |
+| b91     | int  | YES  |     | 0       |       |
+| b92     | int  | YES  |     | 0       |       |
+| b93     | int  | YES  |     | 0       |       |
+| b94     | int  | YES  |     | 0       |       |
+| b95     | int  | YES  |     | 0       |       |
+| b96     | int  | YES  |     | 0       |       |
+| b97     | int  | YES  |     | 0       |       |
+| b98     | int  | YES  |     | 0       |       |
+| b99     | int  | YES  |     | 0       |       |
++---------+------+------+-----+---------+-------+
 
