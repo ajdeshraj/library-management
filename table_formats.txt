@@ -18,8 +18,8 @@ FOREIGN KEY (borrower_id) REFERENCES users(user_id)
 
 create table borrowings
 (
-borrower_id int(3) not null,
-borrowed_id int(3) not null,
+borrower_id varchar(3) not null,
+borrowed_id varchar(3) not null,
 dob date not null,
 dor date not null,
 FOREIGN KEY (borrower_id) REFERENCES users(user_id),
