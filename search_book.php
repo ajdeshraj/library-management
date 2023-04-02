@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,6 +15,11 @@
         <?php
             if(isset($_POST['submit']))
             {
+                $servername = "localhost";
+                $username = "root";
+                $password = "Factoid-Suds-Tavern3";
+                $dbname = "library";
+                
                 $search_text = $_GET["search_term"];
                 $conn = new mysqli($servername, $username, $password, $dbname);
                 

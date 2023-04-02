@@ -67,7 +67,7 @@ session_start();
                 $num_borrowed=0;
 
                 // MYSQLi connection
-                $conn = new mysqli("localhost", "root", "", "LibSys");
+                $conn = new mysqli("localhost", "root", "Factoid-Suds-Tavern3", "library");
                 if($conn->connect_error)
                 {
                     die("Connection failed: ".$conn->connect_error."<br>");

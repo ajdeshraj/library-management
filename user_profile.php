@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -5,6 +8,11 @@
     </head>
     <body>
         <?php
+            $servername = "localhost";
+            $username = "root";
+            $password = "Factoid-Suds-Tavern3";
+            $dbname = "library";
+            
             $conn = new mysqli($servername, $username, $password, $dbname);
                 
             if($conn->connect_error)

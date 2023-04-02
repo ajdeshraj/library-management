@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -5,6 +8,11 @@
     </head>
     <body>
         <?php
+            $servername = "localhost";
+            $username = "root";
+            $password = "Factoid-Suds-Tavern3";
+            $dbname = "library";
+
             $conn = new mysqli($servername, $username, $password, $dbname);
                 
             if($conn->connect_error)
@@ -15,10 +23,10 @@
             $other_ids = array();
             $similarity = array();
 
-            $user_query = "SELECT * FROM ratings WHERE user_id = ".$user_id;
+            $user_query = "SELECT * FROM ratings WHERE user_id = ".$_SESSION["user_id"];
             $result_user = $conn->query($user_query);
 
-            $other_query = "SELECT * FROM ratings where user_id != ".$user_id;
+            $other_query = "SELECT * FROM ratings where user_id != ".$_SESSION["user_id"];
             $result_others = $conn->query($other_query);
 
             $user_row = $result_user->fetch_assoc();
