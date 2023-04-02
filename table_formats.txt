@@ -3,7 +3,6 @@ create table users
 user_id int(3) primary key,
 username varchar(20) unique,
 pw varchar(20),
-num_borrowed int(1) default 0
 );
 
 create table books
@@ -167,4 +166,3 @@ desc ratings;
 | b98     | int  | YES  |     | 0       |       |
 | b99     | int  | YES  |     | 0       |       |
 +---------+------+------+-----+---------+-------+
-
