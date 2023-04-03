@@ -1,5 +1,5 @@
 <?php
-session_start();
+    session_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -8,6 +8,13 @@ session_start();
     </head>
     <body>
         <?php
+            // Function to push element into associative array
+            function array_push_assoc($array, $key, $value)
+            {
+                $array[$key] = $value;
+                return $array;
+            }
+
             $servername = "localhost";
             $username = "root";
             $password = "Factoid-Suds-Tavern3";
@@ -20,6 +27,110 @@ session_start();
                 die("Connection failed: ".$conn->connect_error."<br>");
             }
 
+
+            $user_ratings_query = "SELECT * FROM ratings WHERE user_id = ".$_SESSION["user_id"];
+            $other_users_ratings_query = "SELECT * FROM ratings WHERE user_id != ".$_SESSION["user_id"];
+            $result_user_ratings = $conn->query($user_ratings_query);
+            $result_other_users_ratings = $conn->query($other_users_ratings_query);
+            
+            $common_book_id = array();  // Array to store common books between users
+            $user_common_ratings = array(); // Array to store ratings of the common books of current user
+            $other_user_common_ratings = array();   // Array to store ratings of the common books of the other user
+            $similarity_coefficient = array();  // Array to store similartiy coefficients
+            $user_row = $result_user_ratings->fetch_assoc();
+            if ($result_other_users_ratings->num_rows > 0)
+            {
+                while ($other_users_row = $result_other_users_ratings->fetch_assoc())
+                {
+                    // Resetting arrays for each combination of users
+                    unset($common_book_id);
+                    unset($user_common_ratings);
+                    unset($other_user_common_ratings);
+
+                    for ($i = 0; $i < 100; $i++)
+                    {
+                        if ($user_row["b".$i] != 0 && $other_users_row["b".$i] != 0)
+                        {
+                            array_push($common_book_id, $i);
+                        }
+                    }
+                    foreach ($common_book_id as $id)
+                    {
+                        array_push($user_common_ratings, $user_row["b".$id]);
+                        array_push($other_user_common_ratings, $other_users_row["b".$id]);
+                    }
+
+                    // Calculating Cosine Similarity
+                    $dot_product = 0;
+                    $norm_user = 0;
+                    $norm_other_user = 0;
+                    
+                    for ($i = 0; $i < sizeof($user_common_ratings); $i++)
+                    {
+                        $dot_product += $user_common_ratings[i]*$other_user_common_ratings[i];
+                        $norm_user += $user_common_ratings[i]*$user_common_ratings[i];
+                        $norm_other_user += $other_user_common_ratings[i]*$other_user_common_ratings[i];
+                    }
+                    $norm_user = sqrt($norm_user);
+                    $norm_other_user = sqrt($norm_other_user);
+
+                    $sim = $dot_product/($norm_user*$norm_other_user);
+                    // Pushing UserID => Similarity Coefficient
+                    array_push_assoc($similarity_coefficient, $other_users_row["user_id"], $sim);                
+                }
+            }
+
+            $rec_ids = array();
+            if ($result_other_users_ratings->num_rows > 0)
+            {
+                while ($other_users_row = $result_other_users_ratings->fetch_assoc())
+                {
+                    $other_id = $other_users_row["user_id"];
+                    foreach ($similarity_coefficient as $id=>$sim_c)
+                    {
+                        if ($other_id == $id && $sim_c > 0.4)
+                        {
+                            for ($i = 0; $i < 100; $i++)
+                            {
+                                if ($other_users_row["b".$i] > 6 && $user_row["b".$i] == 0 && in_array($i, $rec_ids))
+                                {
+                                    array_push($rec_ids, $i);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if (sizeof($rec_ids) > 0)
+            {
+                echo "<table border = '1'
+                    <tr>
+                    <th>Book ID</th>
+                    <th>Book Title</th>
+                    <th>Book Author</th>
+                    </tr>";
+                foreach ($rec_ids as $i)
+                {
+                    $rec_query = "SELECT * FROM book WHERE book_id = ".$i;
+                    $result_rec = $conn->query($rec_query);
+                    while ($row_recs = $result_rec->fetch_assoc())
+                    {
+                        echo "<tr>";
+                        echo "<td>".$row_recs["book_id"]."</td>";
+                        echo "<td>".$row_recs["title"]."</td>";
+                        echo "<td>".$row_recs["author"]."</td>";
+                        echo "</tr>";
+                    }
+                }
+                echo "</table>";
+            }
+            else
+            {
+                echo "No Recommendations Available At The Moment!<br>";
+            }
+            
+
+            /*
             $other_ids = array();
             $similarity = array();
 
@@ -87,6 +198,7 @@ session_start();
                 }
             }
 
+            foreach ($)
             $book_query = "SELECT * FROM book";
             $result_book = $conn->query($book_query);
             
@@ -118,6 +230,8 @@ session_start();
             $sim_query->close();
             $user_sim_query->close();
             $book_query->close();
+            */
+            
             $conn->close();
         ?>
     </body>
