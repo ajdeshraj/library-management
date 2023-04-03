@@ -7,7 +7,7 @@
         <title>Search Books</title>
     </head>
     <body>
-        <form action="search_book.html" method="post">
+        <form action="search_book.php" method="post">
             <label for="search_term" id="search_label">Enter Book or Author Name</label>
             <input type="text" id="search_term" name="search_term">
             <input type="submit" id="submit" name="submit" value="Search"> 
@@ -20,7 +20,10 @@
                 $password = "Factoid-Suds-Tavern3";
                 $dbname = "library";
                 
-                $search_text = $_GET["search_term"];
+                $search_text = $_POST["search_term"];
+                $search_text = strtoupper($search_text);
+                $search_text = "%".$search_text."%";
+                // echo $search_text."<br>";
                 $conn = new mysqli($servername, $username, $password, $dbname);
                 
                 if($conn->connect_error)
@@ -28,8 +31,12 @@
                     die("Connection failed: ".$conn->connect_error."<br>");
                 }
 
-                $select = "SELECT title, author FROM book";
-                $result = $conn->query($select);
+                $select = "SELECT title, author FROM book WHERE title LIKE ? OR author LIKE ?";
+                $stmt = $conn->prepare($select);
+                $stmt->bind_param("ss", $search_text, $search_text);
+                $stmt->execute();
+
+                $result = $stmt->get_result();
                 
                 if ($result->num_rows > 0)
                 {
@@ -37,21 +44,19 @@
                     <tr><th>Book Title</th><th>Author</th><th>Rating</th></tr>";
                     while ($row = $result->fetch_assoc())
                     {
-                        $upper_title = strtoupper($row["title"]);
-                        $upper_author = strtoupper($row["author"]);
-                        if (similar_text($upper_title, $search_text) > 50.0 || similar_text($upper_author, $search_text) > 50.0)
-                        {
-                            echo "<tr>";
-                            echo "<td>".$row["title"]."</td>";
-                            echo "<td>".$row["author"]."</td>";
-                            echo "<td>".$row["avg_rating"]."</td>";
-                            echo "</tr>";
-                        }
+                        echo "<tr>";
+                        echo "<td>".$row["title"]."</td>";
+                        echo "<td>".$row["author"]."</td>";
+                        echo "<td>".$row["avg_rating"]."</td>";
+                        echo "</tr>";
                     }
                     echo "</table>";
                 }
+                else
+                {
+                    echo "No Results Found<br>";
+                }
 
-                $select->close();
                 $conn->close();
             }
         ?>
