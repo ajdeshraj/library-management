@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -8,12 +11,17 @@
         <link rel="stylesheet" href="borrow_book.css">
     </head>
     <body>
+        <a href = "user_dashboard.php">User Dashboard</a>
         <?php
+            // MYSQLi connection
             $conn = new mysqli("localhost", "root", "", "LibSys");
             if($conn->connect_error)
             {
                 die("Connection failed: ".$conn->connect_error."<br>");
             }
+
+            echo $_SESSION["user_id"].". ";
+            echo "Dashboard for ".$_SESSION["username"];
 
             $select = "SELECT * FROM books";
             $result = $conn->query($select);
@@ -29,7 +37,7 @@
             }
             echo "</table>";
         ?>
-        <form action="borrow_book.php" method="post" onsubmit="return true;"> 
+        <form method="post" onsubmit="return true;"> 
             <input type="text" required name="book_id" id="book_id" placeholder="Enter Book ID of book to borrow">
             <label for="book_id" id="book_id_msg"></label>
             <input type="submit" value="Borrow" name="submit">
@@ -37,17 +45,19 @@
         <?php
             if(isset($_POST['submit']))
             {
-                $book_id=$_GET["book_id"];
-                $borrower_id = $_SESSION["user_id"];
+                $book_id=$_POST["book_id"];
+                $user_id = $_SESSION["user_id"];
 
                 $conn = new mysqli("localhost", "root", "", "LibSys");
                 if($conn->connect_error)
                 {
                     die("Connection failed: ".$conn->connect_error."<br>");
                 }
-
-                $select = "SELECT num_borrowed FROM users WHERE user_id=".(string)$borrower_id;
-                $result = $conn->query($select);
+                $select = "SELECT count(borrowed_id) AS num_borrowed FROM borrowings WHERE borrower_id=?";
+                $stmt = $conn->prepare($select);
+                $stmt->bind_param("i", $user_id);
+                $stmt->execute();
+                $result = $stmt->get_result();
                 if($result->num_rows>0) 
                 {
                     while($row = $result->fetch_assoc())
@@ -59,24 +69,33 @@
                         }
                     }
                 }
+                $num_borrowed+=1;
 
-                $select = "SELECT book_id, borrower_id FROM books WHERE book_id=? AND borrower_id=NULL";
+                $select = "SELECT book_id FROM books WHERE book_id=? AND borrower_id=NULL";
                 $stmt = $conn->prepare($select);
                 $stmt->bind_param("i", $book_id);
-                $result = $stmt->execute();
+                $stmt->execute();
+                $result = $stmt->get_result();
                 if($result>0) 
                 {
-                    $dob = date("Y/m/d");
-                    $dor = date("Y/m/d", strtotime("-2 months"));
-                    $stmt = $conn->prepare("INSERT INTO borrowings (borrower_id, borrowed_id, dob, dor) VALUES (?, ?, ?, ?)");
-                    $stmt->bind_param("iidd", $borrower_id, $book_id, $dob, $dor);
+                    $dob = 2; #date("Y/m/d");
+                    $dor = 16; #date("Y/m/d"); #, strtotime("-2 months"));
+                    $insert_borrowings="INSERT INTO borrowings (borrower_id, borrowed_id, dob, dor) VALUES (?, ?, ?, ?)";
+                    $stmt = $conn->prepare($insert_borrowings);
+                    $stmt->bind_param("iiii", $user_id, $book_id, $dob, $dor);
                     $stmt->execute();
 
-                    $update_books = "UPDATE books SET borrower_id=".(string)$borrower_id." WHERE book_id=".(string)$book_id;
-                    $conn->query($update_books);
+                    $update_books = "UPDATE books SET borrower_id=? WHERE book_id=?";
+                    $stmt = $conn->prepare($update_books);
+                    $stmt->bind_param("ii", $user_id, $book_id);
+                    $stmt->execute();
                     
-                    $update_users = "UPDATE users SET num_borrowed=".(string)$num_borrowed." WHERE user_id=".(string)$borrower_id;
-                    $conn->query($update_users);
+                    $update_users = "UPDATE users SET num_borrowed=? WHERE user_id=?";
+                    $stmt = $conn->prepare($update_users);
+                    $stmt->bind_param("ii", $num_borrowed, $user_id);
+                    $stmt->execute();
+
+                    echo "Number of books borrowed: ".$num_borrowed;
                 }
 
                 $stmt->close();

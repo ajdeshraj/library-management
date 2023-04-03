@@ -11,7 +11,7 @@ session_start();
         <link rel="stylesheet" href="login.css">
     </head>
     <body>
-        <form action="login.php" method="post" onsubmit="return validate();"> 
+        <form method="post" onsubmit="return validate();"> 
             <input type="text" required name="username" id="username" placeholder="Username">
             <label for="username" id="username_msg"></label>
             <br>
@@ -42,17 +42,24 @@ session_start();
                 $result = $stmt->get_result();
                 if ($result->num_rows>0) 
                 {
-                    $_SESSION["user_id"] = $row["user_id"];
+                    while($row = $result->fetch_assoc())
+                    {
+                        $_SESSION["user_id"] = $row["user_id"];
+                        $_SESSION["username"] = $row["username"];
+                        $stmt->close();
+                        $conn->close();
+                        header("Location: /LibSys/user_dashboard.php");
+                        exit;
+                    }
+                }
+                else
+                {
                     $stmt->close();
                     $conn->close();
-                    header("Location: /LibSys/user_dashboard.php");
-                    exit;
+                    echo("No such username.");
+                    session_unset();
+                    session_destroy();
                 }
-                $stmt->close();
-                $conn->close();
-                echo("No such username.");
-                session_unset();
-                session_destroy(); 
             }
         ?>
     </body>

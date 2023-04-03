@@ -11,7 +11,7 @@ session_start();
         <link rel="stylesheet" href="register.css">
     </head>
     <body>
-        <form action="register.php" method="post" onsubmit="return validate();"> 
+        <form method="post" onsubmit="return validate();"> 
             <input type="text" required name="username" id="username" placeholder="Username">
             <label for="username" id="username_msg"></label>
             <br>
@@ -64,10 +64,9 @@ session_start();
             {
                 $username=$_POST["username"];
                 $password=$_POST["password1"];
-                $num_borrowed=0;
 
                 // MYSQLi connection
-                $conn = new mysqli("localhost", "root", "Factoid-Suds-Tavern3", "library");
+                $conn = new mysqli("localhost", "root", "", "LibSys");
                 if($conn->connect_error)
                 {
                     die("Connection failed: ".$conn->connect_error."<br>");
@@ -86,10 +85,11 @@ session_start();
                 }
 
                 $_SESSION["user_id"] = $user_id;
+                $_SESSION["username"] = $username;
                 
                 // Insert new user into database
-                $stmt = $conn->prepare("INSERT INTO users (user_id, username, pw, num_borrowed) VALUES (?, ?, ?, ?)");
-                $stmt->bind_param("issi", $user_id, $username, $password, $num_borrowed);
+                $stmt = $conn->prepare("INSERT INTO users (user_id, username, pw) VALUES (?, ?, ?)");
+                $stmt->bind_param("issi", $user_id, $username, $password);
                 $stmt->execute();
             
                 $stmt->close();
