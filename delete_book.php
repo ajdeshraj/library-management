@@ -10,6 +10,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+    <form method="post">
+            <input type="text" id="book_del_id" name="book_del_id" placeholder="Book ID of Book to be Deleted" required>
+            <label for="book_del_id" id="book_del_msg"></label>
+            <input type="submit" id="submit" name="submit" value="Delete">
+        </form>
         <?php
             $servername = "localhost";
             $username = "root";
@@ -23,7 +28,7 @@
                 die("Connection failed: ".$conn->connect_error."<br>");
             }
 
-            $select = "SELECT * FROM books";
+            $select = "SELECT * FROM book";
             $result = $conn->query($select);
             if($result->num_rows>0) 
             {
@@ -44,13 +49,7 @@
 
                 $conn->close();
             }
-        ?>
-        <form method="post">
-            <input type="text" id="book_del_id" name="book_del_id" placeholder="Book ID of Book to be Deleted" required>
-            <label for="book_del_id" id="book_del_msg"></label>
-            <input type="submit" id="submit" name="submit" value="Delete">
-        </form>
-        <?php
+       
             if (isset($_POST['submit']))
             {
                 $book_id = $_POST['book_del_id'];
