@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="login.css">
     </head>
     <body>
-        <form method="post" onsubmit="return validate();"> 
+        <form method="post"> 
             <input type="text" required name="admin_id" id="admin_id" placeholder="Admin ID">
             <label for="username" id="username_msg"></label>
             <br>
@@ -34,7 +34,7 @@
                 }
 
                 // Authenticating and redirecting
-                $select = "SELECT * FROM admin WHERE admin_id=? AND password=?";
+                $select = "SELECT * FROM admins WHERE admin_id = ? AND pw = ?";
                 $stmt = $conn->prepare($select); 
                 $stmt->bind_param("ss", $admin_id, $password);
                 $stmt->execute();
@@ -46,7 +46,7 @@
                         $_SESSION["admin_id"] = $row["admin_id"];
                         $stmt->close();
                         $conn->close();
-                        header("Location: /library-management/admin_dashboard.php");
+                        header("Location: admin_dashboard.php");
                         exit;
                     }
                 }
