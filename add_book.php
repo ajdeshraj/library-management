@@ -10,7 +10,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <a href = "user_dashboard.php">User Dashboard</a>
+        <a href = "admin_dashboard.php">Admin Dashboard</a>
         <form method="post" onsubmit="return validate()">
             <input type="text" id="title" name="title" placeholder="Book Title" required>
             <label for="title" id="title_msg"></label>

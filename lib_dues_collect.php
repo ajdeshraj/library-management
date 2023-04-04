@@ -29,7 +29,7 @@
         <title>Library Dues Collection</title>
     </head>
     <body>
-        <a href = "user_dashboard.php">User Dashboard</a>
+        <a href = "admin_dashboard.php">Admin Dashboard</a>
         <form method="post">
             <input type="text" name="book_id">
             <input type="submit" name="submit" value="Submit">
