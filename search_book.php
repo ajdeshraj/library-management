@@ -7,6 +7,7 @@
         <title>Search Books</title>
     </head>
     <body>
+        <a href = "user_dashboard.php">User Dashboard</a>
         <form action="search_book.php" method="post">
             <label for="search_term" id="search_label">Enter Book or Author Name</label>
             <input type="text" id="search_term" name="search_term">

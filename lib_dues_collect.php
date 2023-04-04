@@ -29,6 +29,7 @@
         <title>Library Dues Collection</title>
     </head>
     <body>
+        <a href = "user_dashboard.php">User Dashboard</a>
         <form method="post">
             <input type="text" name="book_id">
             <input type="submit" name="submit" value="Submit">
@@ -85,8 +86,8 @@
                 echo "<p>Book Successfully Returned with Pending Dues Paid</p>";
                 $conn->close();
                 // sleep(5);
-                header("Location: admin_dashboard.php");
-                exit;
+                // header("Location: admin_dashboard.php");
+                // exit;
             }
         ?>
     </body>

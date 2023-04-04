@@ -7,6 +7,7 @@
         <title>Book Recommendation</title>
     </head>
     <body>
+        <a href = "user_dashboard.php">User Dashboard</a>
         <?php
             // Function to push element into associative array
             function array_push_assoc($array, $key, $value)

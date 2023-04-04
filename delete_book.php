@@ -10,7 +10,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-    <form method="post">
+        <a href = "user_dashboard.php">User Dashboard</a>
+        <form method="post">
             <input type="text" id="book_del_id" name="book_del_id" placeholder="Book ID of Book to be Deleted" required>
             <label for="book_del_id" id="book_del_msg"></label>
             <input type="submit" id="submit" name="submit" value="Delete">
@@ -75,8 +76,8 @@
                 stmt->close();
                 conn->close();
 
-                header("Location: admin_dashboard.php");
-                exit;
+                // header("Location: admin_dashboard.php");
+                // exit;
             }
         ?>
     </body>

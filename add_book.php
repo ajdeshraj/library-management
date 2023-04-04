@@ -10,6 +10,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+        <a href = "user_dashboard.php">User Dashboard</a>
         <form method="post" onsubmit="return validate()">
             <input type="text" id="title" name="title" placeholder="Book Title" required>
             <label for="title" id="title_msg"></label>
@@ -70,8 +71,8 @@
                 $stmt->bind_param("iss", $book_id, $book_title, $book_author);
                 $stmt->execute();
 
-                header("Location: admin_dashboard.php");
-                exit;
+                // header("Location: admin_dashboard.php");
+                // exit;
             }
         ?>
     </body>
