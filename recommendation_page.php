@@ -27,9 +27,19 @@
                 die("Connection failed: ".$conn->connect_error."<br>");
             }
 
+            // Query to get number of books
+            $id_query = "SELECT max(book_id) as max_id FROM books";
+            $result = $conn->query($id_query);
+            if ($result->num_rows > 0)
+            {
+                while ($row = $result->fetch_assoc())
+                {
+                    $max_id = $row["max_id"]+1;
+                }
+            }
 
-            $user_ratings_query = "SELECT * FROM ratings WHERE user_id = ".$_SESSION["user_id"];
-            $other_users_ratings_query = "SELECT * FROM ratings WHERE user_id != ".$_SESSION["user_id"];
+            $user_ratings_query = "SELECT * FROM ratings WHERE user_id = 0";// .$_SESSION["user_id"];
+            $other_users_ratings_query = "SELECT * FROM ratings WHERE user_id != 0";//.$_SESSION["user_id"];
             $result_user_ratings = $conn->query($user_ratings_query);
             $result_other_users_ratings = $conn->query($other_users_ratings_query);
             
@@ -47,7 +57,7 @@
                     unset($user_common_ratings);
                     unset($other_user_common_ratings);
 
-                    for ($i = 0; $i < 100; $i++)
+                    for ($i = 0; $i < $max_id; $i++)
                     {
                         if ($user_row["b".$i] != 0 && $other_users_row["b".$i] != 0)
                         {
@@ -90,7 +100,7 @@
                     {
                         if ($other_id == $id && $sim_c > 0.4)
                         {
-                            for ($i = 0; $i < 100; $i++)
+                            for ($i = 0; $i < $max_id; $i++)
                             {
                                 if ($other_users_row["b".$i] > 6 && $user_row["b".$i] == 0 && in_array($i, $rec_ids))
                                 {
@@ -111,13 +121,13 @@
                     </tr>";
                 foreach ($rec_ids as $i)
                 {
-                    $rec_query = "SELECT * FROM book WHERE book_id = ".$i;
+                    $rec_query = "SELECT * FROM books WHERE book_id = ".$i;
                     $result_rec = $conn->query($rec_query);
                     while ($row_recs = $result_rec->fetch_assoc())
                     {
                         echo "<tr>";
                         echo "<td>".$row_recs["book_id"]."</td>";
-                        echo "<td>".$row_recs["title"]."</td>";
+                        echo "<td>".$row_recs["book_name"]."</td>";
                         echo "<td>".$row_recs["author"]."</td>";
                         echo "</tr>";
                     }
