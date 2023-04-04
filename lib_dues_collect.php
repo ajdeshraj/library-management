@@ -41,7 +41,7 @@
                 {
                     die("Connection failed: ".$conn->connect_error."<br>");
                 }
-                $select = "SELECT * FROM borrow WHERE date_return < curdate()";
+                $select = "SELECT * FROM borrowings WHERE dor < curdate()";
                 $result = $conn->query($select);
                 if ($result->num_rows > 0)
                 {
@@ -56,11 +56,11 @@
                     while ($row = $result->fetch_assoc())
                     {
                         echo "<tr>";
-                        echo "<td>".$row["book_id"]."</td>";
-                        echo "<td>".$row["user_id"]."</td>";
-                        echo "<td>".$row["date_borrow"]."</td>";
-                        echo "<td>".$row["date_return"]."</td>";
-                        $date_diff = "SELECT DATEDIFF(curdate(), date_return) AS date_diff FROM borrow WHERE book_id = ".$row["book_id"];
+                        echo "<td>".$row["borrowed_id"]."</td>";
+                        echo "<td>".$row["borrower_id"]."</td>";
+                        echo "<td>".$row["dob"]."</td>";
+                        echo "<td>".$row["dor"]."</td>";
+                        $date_diff = "SELECT DATEDIFF(curdate(), dor) AS date_diff FROM borrowings WHERE borrowed_id = ".$row["borrowed_id"];
                         $result_diff = $conn->query($date_diff);
                         $row_diff = $result_diff->fetch_assoc();
                         $diff_days = $row_diff["date_diff"];
@@ -78,7 +78,7 @@
                 }
 
                 $book_id = $_POST["book_id"];
-                $delete_query = "DELETE FROM borrow WHERE book_id = ?";
+                $delete_query = "DELETE FROM borrowings WHERE borrowed_id = ?";
                 $stmt = $conn->prepare($delete_query);
                 $stmt->bind_param("i", $book_id);
                 $stmt->execute();

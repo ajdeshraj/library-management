@@ -31,7 +31,7 @@
                     die("Connection failed: ".$conn->connect_error."<br>");
                 }
 
-                $select = "SELECT title, author FROM book WHERE title LIKE ? OR author LIKE ?";
+                $select = "SELECT book_name, author FROM books WHERE book_name LIKE ? OR author LIKE ?";
                 $stmt = $conn->prepare($select);
                 $stmt->bind_param("ss", $search_text, $search_text);
                 $stmt->execute();
@@ -45,7 +45,7 @@
                     while ($row = $result->fetch_assoc())
                     {
                         echo "<tr>";
-                        echo "<td>".$row["title"]."</td>";
+                        echo "<td>".$row["book_name"]."</td>";
                         echo "<td>".$row["author"]."</td>";
                         echo "<td>".$row["avg_rating"]."</td>";
                         echo "</tr>";

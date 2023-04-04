@@ -55,7 +55,7 @@
                     die("Connection failed: ".$conn->connect_error."<br>");
                 }
 
-                $id_query = "SELECT max(book_id) as max_id FROM book";
+                $id_query = "SELECT max(book_id) as max_id FROM books";
                 $result = $conn->query($id_query);
                 if ($result->num_rows > 0)
                 {
@@ -65,7 +65,7 @@
                     }
                 }
 
-                $insert_query = "INSERT INTO book (book_id, title, author) VALUES (?, ?, ?)";
+                $insert_query = "INSERT INTO books (book_id, book_name, author) VALUES (?, ?, ?)";
                 $stmt = $conn->prepare($insert_query);
                 $stmt->bind_param("iss", $book_id, $book_title, $book_author);
                 $stmt->execute();

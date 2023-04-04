@@ -28,7 +28,7 @@
                 die("Connection failed: ".$conn->connect_error."<br>");
             }
 
-            $select = "SELECT * FROM book";
+            $select = "SELECT * FROM books";
             $result = $conn->query($select);
             if($result->num_rows>0) 
             {
@@ -66,7 +66,7 @@
                     die("Connection failed: ".$conn->connect_error."<br>");
                 }
 
-                $delete = "DELETE FROM book WHERE book_id = ?";
+                $delete = "DELETE FROM books WHERE book_id = ?";
                 $stmt = $conn->prepare($delete);
                 $stmt->bind_param("i", $book_id);
                 $stmt->execute();
