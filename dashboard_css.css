@@ -29,6 +29,8 @@ body
     flex-basis: 200px;
     flex: 1;
     border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: 0 0 0 4px #5a01a7;
     padding: 20px;
     margin: 60px;
     justify-content: center;
@@ -49,4 +51,11 @@ a
 {
     text-decoration: none;
     color: black;
+}
+
+.column:hover
+{
+    transform: scale(1.25);
+    box-shadow: 0 0 0 4px #8b0000;
+    transition: 0.5s;
 }
