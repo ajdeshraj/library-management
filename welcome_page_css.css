@@ -1,0 +1,52 @@
+body
+{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.heading 
+{
+    width: 100%;
+    max-width: 100vw;
+}
+
+.heading h1 
+{
+    text-align: center;
+}
+
+.row
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.column
+{
+    display: flex;
+    flex-direction: column;
+    flex-basis: 200px;
+    flex: 1;
+    border: 1px solid black;
+    padding: 20px;
+    margin: 60px;
+    justify-content: center;
+    align-content: center;
+}
+
+h2
+{
+    text-align: center;
+}
+
+h4
+{
+    text-align: center;
+}
+
+a 
+{
+    text-decoration: none;
+    color: black;
+}
