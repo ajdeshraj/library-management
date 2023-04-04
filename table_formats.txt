@@ -10,8 +10,9 @@ create table books
 book_id int(3) primary key,
 book_name varchar(50),
 author varchar(20),
-avg_rating double(3, 2) default null,
+avg_rating double(3, 2) default 0.0,
 borrower_id int(3) default null,
+num_borrowed int(3) default 0,
 FOREIGN KEY (borrower_id) REFERENCES users(user_id)
 );
 
