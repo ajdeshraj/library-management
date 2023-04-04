@@ -1,3 +1,25 @@
+<?php
+    session_start();
+    // MYSQLi connections
+    $conn = new mysqli("localhost", "root", "Factoid-Suds-Tavern3", "library");
+    if($conn->connect_error)
+    {
+        die("Connection failed: ".$conn->connect_error."<br>");
+    }
+    $admin_query = "SELECT admin_id FROM admins";
+    $result = $conn->query($admin_query);
+    $row = $result->fetch_assoc();
+    $admin = $row["admin_id"];
+    if ($_SESSION["admin_id"] != $admin)
+    {
+        session_unset();
+        session_destroy();
+        $conn->close();
+        header("Location: admin_login.php");
+        exit;
+    }
+    conn->close();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
