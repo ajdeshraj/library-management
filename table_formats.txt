@@ -1,65 +1,66 @@
-create table user
+create table users
 (
-user_id int primary key,
-username varchar(40) unique,
-pw varchar(30) not null
+user_id int(3) primary key,
+username varchar(20) unique,
+pw varchar(20)
 );
 
-create table book
+create table books
 (
-book_id int primary key,
-author varchar(40),
-avg_rating decimal(5, 3) default 0.000,
-borrow_status int default 0,
-title varchar(90),
-num_borrowed int default 0
+book_id int(3) primary key,
+book_name varchar(50),
+author varchar(20),
+avg_rating double(3, 2) default 0.0,
+borrower_id int(3) default null,
+num_borrowed int(3) default 0,
+FOREIGN KEY (borrower_id) REFERENCES users(user_id)
 );
 
-create table borrow
+
+create table borrowings
 (
-user_id int,
-book_id int,
-date_borrow date not null,
-date_return date not null,
-FOREIGN KEY (user_id) REFERENCES user(user_id),
-FOREIGN KEY (book_id) REFERENCES book(book_id)
+borrower_id int(3) not null,
+borrowed_id int(3) not null,
+dob date not null,
+dor date not null,
+FOREIGN KEY (borrower_id) REFERENCES users(user_id),
+FOREIGN KEY (borrowed_id) REFERENCES books(book_id)
 );
 
 create table ratings
 (
 );
 
-
-desc user;
+desc users;
 +----------+-------------+------+-----+---------+-------+
 | Field    | Type        | Null | Key | Default | Extra |
 +----------+-------------+------+-----+---------+-------+
-| user_id  | int         | NO   | PRI | <null>  |       |
-| username | varchar(40) | YES  | UNI | <null>  |       |
-| pw       | varchar(30) | NO   |     | <null>  |       |
+| user_id  | int(3)      | NO   | PRI | <null>  |       |
+| username | varchar(20) | YES  | UNI | <null>  |       |
+| pw       | varchar(20) | YES  |     | <null>  |       |
 +----------+-------------+------+-----+---------+-------+
 
-desc book;
-+---------------+--------------+------+-----+---------+-------+
-| Field         | Type         | Null | Key | Default | Extra |
-+---------------+--------------+------+-----+---------+-------+
-| book_id       | int          | NO   | PRI | <null>  |       |
-| author        | varchar(40)  | YES  |     | <null>  |       |
-| avg_rating    | decimal(5,3) | YES  |     | 0.000   |       |
-| borrow_status | int          | YES  |     | 0       |       |
-| title         | varchar(90)  | YES  |     | <null>  |       |
-| num_borrowed  | int          | YES  |     | 0       |       |
-+---------------+--------------+------+-----+---------+-------+
+desc books;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| book_id      | int(3)      | NO   | PRI | <null>  |       |
+| book_name    | varchar(50) | YES  |     | <null>  |       |
+| author       | varchar(20) | YES  |     | <null>  |       |
+| avg_rating   | double(3,2) | YES  |     | 0.00    |       |
+| borrower_id  | int(3)      | YES  | MUL | <null>  |       |
+| num_borrowed | int(3)      | YES  |     | 0       |       |
++--------------+-------------+------+-----+---------+-------+
 
-desc borrow;
-+-------------+------+------+-----+---------+-------+
-| Field       | Type | Null | Key | Default | Extra |
-+-------------+------+------+-----+---------+-------+
-| user_id     | int  | YES  | MUL | <null>  |       |
-| book_id     | int  | YES  | MUL | <null>  |       |
-| date_borrow | date | NO   |     | <null>  |       |
-| date_return | date | NO   |     | <null>  |       |
-+-------------+------+------+-----+---------+-------+
+desc borrowings;
++-------------+--------+------+-----+---------+-------+
+| Field       | Type   | Null | Key | Default | Extra |
++-------------+--------+------+-----+---------+-------+
+| borrower_id | int(3) | NO   | MUL | <null>  |       |
+| borrowed_id | int(3) | NO   | MUL | <null>  |       |
+| dob         | date   | NO   |     | <null>  |       |
+| dor         | date   | NO   |     | <null>  |       |
++-------------+--------+------+-----+---------+-------+
 
 desc ratings;
 +---------+------+------+-----+---------+-------+
