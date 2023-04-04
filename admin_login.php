@@ -4,22 +4,23 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Login</title>
+        <title>Admin Login</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="login.css">
+        <link rel="stylesheet" href="login_css.css">
     </head>
     <body>
-        <form method="post"> 
-            <input type="text" required name="admin_id" id="admin_id" placeholder="Admin ID">
-            <label for="username" id="username_msg"></label>
-            <br>
-            <input type="password" required name="password" id="password" placeholder="Password">
-            <label for="password" id="password_msg"></label>
-            <br>
-            <input type="submit" value="Login" name="submit">
-        </form>
+        <div class="form" align="center">
+            <h2>Admin Login</h2>
+            <form method="post"> 
+                <input type="text" required name="admin_id" id="admin_id" placeholder="Admin ID" class="text_form">
+                <label for="username" id="username_msg"></label>
+                <input type="password" required name="password" id="password" placeholder="Password" class="text_form">
+                <label for="password" id="password_msg"></label>
+                <input type="submit" value="Login" name="submit" class="button">
+            </form>
+        </div>
         <?php
             if(isset($_POST['submit']))
             {
@@ -54,7 +55,7 @@
                 {
                     $stmt->close();
                     $conn->close();
-                    echo("Invalid Login Details");
+                    echo("<p>Invalid Login Details</p>");
                     session_unset();
                     session_destroy();
                 }

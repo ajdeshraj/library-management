@@ -8,19 +8,24 @@ session_start();
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Login</title>
-        <link rel="stylesheet" href="login.css">
+        <link rel="stylesheet" href="login_css.css">
     </head>
     <body>
-        <form method="post" onsubmit="return validate();"> 
-            <input type="text" required name="username" id="username" placeholder="Username">
-            <label for="username" id="username_msg"></label>
-            <br>
-            <input type="password" required name="password" id="password" placeholder="Password">
-            <label for="password" id="password_msg"></label>
-            <br>
-            <input type="submit" value="Login" name="submit">
-        </form>
+        <div class="form" align="center">
+            <h2>User Login</h2>
+            <form method="post" onsubmit="return validate();">
+                <label class="wrap"> 
+                    <input type="text" required name="username" id="username" placeholder="Username" class="text_form">
+                    <label for="username" id="username_msg"></label>
+                </label>
+                <label class="wrap">
+                    <input type="password" required name="password" id="password" placeholder="Password" class="text_form">
+                    <label for="password" id="password_msg"></label>
+                </label>
+                <input type="submit" value="Login" name="submit" class="button">
+            </form>
         <a href="register.php">New User? Register Here</a>
+        </div>
         <?php
             if(isset($_POST['submit']))
             {
@@ -57,7 +62,7 @@ session_start();
                 {
                     $stmt->close();
                     $conn->close();
-                    echo("No such username.");
+                    echo("<p>Invalid Login Details</p>");
                     session_unset();
                     session_destroy();
                 }
