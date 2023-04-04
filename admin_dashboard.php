@@ -6,33 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <style>
-        .card-holder {
+        .card-holder 
+        {
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
             margin: 90px;
         }
-        .card-holder a {
+        .card-holder a 
+        {
             border: 1px solid black;
             width: 300px;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
-        .card-holder a h2 {
+        .card-holder a h2 
+        {
             text-align: center;
         }
-        .card-holder a h3 {
-            text-align: center;
-        }
-        .heading {
+        .heading 
+        {
             width: 100%;
             max-width: 100vw;
         }
-        .heading h1 {
+        .heading h1 
+        {
             text-align: center;
         }
-        a {
+        a 
+        {
             text-decoration: none;
             color: black;
         }
