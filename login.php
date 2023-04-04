@@ -20,6 +20,7 @@ session_start();
             <br>
             <input type="submit" value="Login" name="submit">
         </form>
+        <a href="register.php">New User? Register Here</a>
         <?php
             if(isset($_POST['submit']))
             {
@@ -28,7 +29,7 @@ session_start();
                 $num_borrowed=0;
 
                 // MYSQLi connections
-                $conn = new mysqli("localhost", "root", "", "LibSys");
+                $conn = new mysqli("localhost", "root", "Factoid-Suds-Tavern3", "library");
                 if($conn->connect_error)
                 {
                     die("Connection failed: ".$conn->connect_error."<br>");
@@ -48,7 +49,7 @@ session_start();
                         $_SESSION["username"] = $row["username"];
                         $stmt->close();
                         $conn->close();
-                        header("Location: /LibSys/user_dashboard.php");
+                        header("Location: user_dashboard.php");
                         exit;
                     }
                 }

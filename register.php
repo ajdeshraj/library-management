@@ -66,7 +66,7 @@ session_start();
                 $password=$_POST["password1"];
 
                 // MYSQLi connection
-                $conn = new mysqli("localhost", "root", "", "LibSys");
+                $conn = new mysqli("localhost", "root", "Factoid-Suds-Tavern3", "library");
                 if($conn->connect_error)
                 {
                     die("Connection failed: ".$conn->connect_error."<br>");
@@ -95,7 +95,7 @@ session_start();
                 $stmt->close();
                 $conn->close();
 
-                header("Location: /LibSys/user_dashboard.php");
+                header("Location: user_dashboard.php");
                 exit;
             }
         ?>
