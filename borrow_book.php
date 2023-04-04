@@ -8,13 +8,12 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Borrow Books</title>
-        <link rel="stylesheet" href="borrow_book.css">
     </head>
     <body>
         <a href = "user_dashboard.php">User Dashboard</a>
         <?php
             // MYSQLi connection
-            $conn = new mysqli("localhost", "root", "", "LibSys");
+            $conn = new mysqli("localhost", "root", "Factoid-Suds-Tavern3", "library");
             if($conn->connect_error)
             {
                 die("Connection failed: ".$conn->connect_error."<br>");
@@ -22,7 +21,7 @@
 
             $select = "SELECT * FROM books";
             $result = $conn->query($select);
-            echo "<table><tr><th>Book ID</th><th>Name</th><th>Author</th><th>Rating</th><th>Borrower ID</th></tr>";
+            echo "<table border='1'><tr><th>Book ID</th><th>Name</th><th>Author</th><th>Rating</th><th>Borrower ID</th></tr>";
             if($result->num_rows>0) 
             {
                 while($row = $result->fetch_assoc())
@@ -45,7 +44,7 @@
                 $book_id=$_POST["book_id"];
                 $user_id = $_SESSION["user_id"];
 
-                $conn = new mysqli("localhost", "root", "", "LibSys");
+                $conn = new mysqli("localhost", "root", "Factoid-Suds-Tavern3", "library");
                 if($conn->connect_error)
                 {
                     die("Connection failed: ".$conn->connect_error."<br>");
