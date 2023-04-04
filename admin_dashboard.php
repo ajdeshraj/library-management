@@ -78,7 +78,7 @@
                 <a href="lib_dues_collect.php">
                     <h2>Collect Library Dues</h2>
                 </a>
-                <a href="">
+                <a href="logout.php">
                     <h2>Logout</h2>
                 </a>
             </div>
