@@ -35,37 +35,38 @@ desc user;
 +----------+-------------+------+-----+---------+-------+
 | Field    | Type        | Null | Key | Default | Extra |
 +----------+-------------+------+-----+---------+-------+
-| user_id  | int         | NO   | PRI | NULL    |       |
-| username | varchar(40) | YES  | UNI | NULL    |       |
-| password | varchar(30) | NO   |     | NULL    |       |
+| user_id  | int         | NO   | PRI | <null>  |       |
+| username | varchar(40) | YES  | UNI | <null>  |       |
+| pw       | varchar(30) | NO   |     | <null>  |       |
 +----------+-------------+------+-----+---------+-------+
 
 desc book;
 +---------------+--------------+------+-----+---------+-------+
 | Field         | Type         | Null | Key | Default | Extra |
 +---------------+--------------+------+-----+---------+-------+
-| book_id       | int          | NO   | PRI | NULL    |       |
-| author        | varchar(40)  | YES  |     | NULL    |       |
+| book_id       | int          | NO   | PRI | <null>  |       |
+| author        | varchar(40)  | YES  |     | <null>  |       |
 | avg_rating    | decimal(5,3) | YES  |     | 0.000   |       |
 | borrow_status | int          | YES  |     | 0       |       |
-| title         | varchar(90)  | YES  |     | NULL    |       |
+| title         | varchar(90)  | YES  |     | <null>  |       |
+| num_borrowed  | int          | YES  |     | 0       |       |
 +---------------+--------------+------+-----+---------+-------+
 
 desc borrow;
 +-------------+------+------+-----+---------+-------+
 | Field       | Type | Null | Key | Default | Extra |
 +-------------+------+------+-----+---------+-------+
-| user_id     | int  | YES  | MUL | NULL    |       |
-| book_id     | int  | YES  | MUL | NULL    |       |
-| date_borrow | date | NO   |     | NULL    |       |
-| date_return | date | NO   |     | NULL    |       |
+| user_id     | int  | YES  | MUL | <null>  |       |
+| book_id     | int  | YES  | MUL | <null>  |       |
+| date_borrow | date | NO   |     | <null>  |       |
+| date_return | date | NO   |     | <null>  |       |
 +-------------+------+------+-----+---------+-------+
 
 desc ratings;
 +---------+------+------+-----+---------+-------+
 | Field   | Type | Null | Key | Default | Extra |
 +---------+------+------+-----+---------+-------+
-| user_id | int  | YES  | MUL | NULL    |       |
+| user_id | int  | YES  | MUL | <null>  |       |
 | b0      | int  | YES  |     | 0       |       |
 | b1      | int  | YES  |     | 0       |       |
 | b2      | int  | YES  |     | 0       |       |
@@ -173,7 +174,7 @@ desc admins;
 | Field    | Type        | Null | Key | Default | Extra |
 +----------+-------------+------+-----+---------+-------+
 | admin_id | varchar(20) | YES  | UNI | NULL    |       |
-| password | varchar(30) | NO   |     | NULL    |       |
+| pw       | varchar(30) | NO   |     | NULL    |       |
 +----------+-------------+------+-----+---------+-------+
 
 select * from admins;
