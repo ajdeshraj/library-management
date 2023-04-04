@@ -16,6 +16,6 @@
             session_destroy();
             echo $_SESSION["user_id"];
         ?>
-        Logged out successfully!
+        <p>Logged out successfully!</p>
     </body>
 </html>
