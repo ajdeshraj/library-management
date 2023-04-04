@@ -1,11 +1,11 @@
-create table users
+create table user
 (
 user_id int primary key,
 username varchar(40) unique,
 pw varchar(30) not null
 );
 
-create table books
+create table book
 (
 book_id int primary key,
 author varchar(40),
@@ -15,7 +15,7 @@ title varchar(90),
 num_borrowed int default 0
 );
 
-create table borrowings
+create table borrow
 (
 user_id int,
 book_id int,
