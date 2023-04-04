@@ -13,7 +13,6 @@ avg_rating decimal(5, 3) default 0.000,
 borrow_status int default 0,
 title varchar(90),
 num_borrowed int default 0,
-FOREIGN KEY (borrower_id) REFERENCES users(user_id)
 );
 
 create table borrowings
