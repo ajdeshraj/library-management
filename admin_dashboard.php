@@ -1,7 +1,7 @@
 <?php
     session_start();
     // MYSQLi connections
-    $conn = new mysqli("localhost", "root", "Factoid-Suds-Tavern3", "library");
+    /* $conn = new mysqli("localhost", "root", "Factoid-Suds-Tavern3", "library");
     if($conn->connect_error)
     {
         die("Connection failed: ".$conn->connect_error."<br>");
@@ -18,7 +18,7 @@
         header("Location: admin_login.php");
         exit;
     }
-    conn->close();
+    conn->close(); */
 ?>
 <!DOCTYPE html>
 <html lang="en">

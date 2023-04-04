@@ -1,7 +1,7 @@
 <?php
     session_start();
     // MYSQLi connections
-    $conn = new mysqli("localhost", "root", "Factoid-Suds-Tavern3", "library");
+    /* $conn = new mysqli("localhost", "root", "Factoid-Suds-Tavern3", "library");
     if($conn->connect_error)
     {
         die("Connection failed: ".$conn->connect_error."<br>");
@@ -18,7 +18,7 @@
         header("Location: admin_login.php");
         exit;
     }
-    conn->close();
+    conn->close(); */
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +31,7 @@
     <body>
         <form method="post">
             <input type="text" name="book_id">
-            <input type="submit" name="submit">
+            <input type="submit" name="submit" value="Submit">
         </form>
         <?php
             if (isset($_POST["submit"]))
@@ -61,9 +61,11 @@
                         echo "<td>".$row["date_borrow"]."</td>";
                         echo "<td>".$row["date_return"]."</td>";
                         $date_diff = "SELECT DATEDIFF(curdate(), date_return) AS date_diff FROM borrow WHERE book_id = ".$row["book_id"];
-                        $result_diff = $conn->query();
+                        $result_diff = $conn->query($date_diff);
                         $row_diff = $result_diff->fetch_assoc();
-                        echo "<td>".$row_diff["date_diff"]."</td>";
+                        $diff_days = $row_diff["date_diff"];
+                        $fees = $diff_days*10;
+                        echo "<td>".$fees."</td>";
                     }
                     echo "</table>";
                 }
@@ -82,7 +84,7 @@
                 $stmt->execute();
                 echo "<p>Book Successfully Returned with Pending Dues Paid</p>";
                 $conn->close();
-                sleep(5);
+                // sleep(5);
                 header("Location: admin_dashboard.php");
                 exit;
             }
