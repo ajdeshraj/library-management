@@ -89,7 +89,7 @@ session_start();
                 
                 // Insert new user into database
                 $stmt = $conn->prepare("INSERT INTO users (user_id, username, pw) VALUES (?, ?, ?)");
-                $stmt->bind_param("issi", $user_id, $username, $password);
+                $stmt->bind_param("iss", $user_id, $username, $password);
                 $stmt->execute();
             
                 $stmt->close();

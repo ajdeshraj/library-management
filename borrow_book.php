@@ -20,9 +20,6 @@
                 die("Connection failed: ".$conn->connect_error."<br>");
             }
 
-            echo $_SESSION["user_id"].". ";
-            echo "Dashboard for ".$_SESSION["username"];
-
             $select = "SELECT * FROM books";
             $result = $conn->query($select);
             echo "<table><tr><th>Book ID</th><th>Name</th><th>Author</th><th>Rating</th><th>Borrower ID</th></tr>";
@@ -69,8 +66,8 @@
                         }
                     }
                 }
-                $num_borrowed+=1;
 
+                # Verifying that book is not borrowed
                 $select = "SELECT book_id FROM books WHERE book_id=? AND borrower_id=NULL";
                 $stmt = $conn->prepare($select);
                 $stmt->bind_param("i", $book_id);
@@ -78,31 +75,32 @@
                 $result = $stmt->get_result();
                 if($result>0) 
                 {
-                    $dob = 2; #date("Y/m/d");
-                    $dor = 16; #date("Y/m/d"); #, strtotime("-2 months"));
-                    $insert_borrowings="INSERT INTO borrowings (borrower_id, borrowed_id, dob, dor) VALUES (?, ?, ?, ?)";
+                    $stmt = $conn->prepare("select curdate() as dob");
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+                    $row = $result->fetch_assoc();
+                    $dob = $row["dob"];
+
+                    $stmt = $conn->prepare("SELECT DATE_ADD(curdate(), INTERVAL 14 DAY) AS dor");
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+                    $row = $result->fetch_assoc();
+                    $dor = $row["dor"];
+
+                    $insert_borrowings="INSERT INTO borrowings (borrower_id, borrowed_id, dob, dor) VALUES (?, ?, '".$dob."', '".$dor."')";
                     $stmt = $conn->prepare($insert_borrowings);
-                    $stmt->bind_param("iiii", $user_id, $book_id, $dob, $dor);
+                    $stmt->bind_param("ii", $user_id, $book_id);
                     $stmt->execute();
 
                     $update_books = "UPDATE books SET borrower_id=? WHERE book_id=?";
                     $stmt = $conn->prepare($update_books);
                     $stmt->bind_param("ii", $user_id, $book_id);
                     $stmt->execute();
-                    
-                    $update_users = "UPDATE users SET num_borrowed=? WHERE user_id=?";
-                    $stmt = $conn->prepare($update_users);
-                    $stmt->bind_param("ii", $num_borrowed, $user_id);
-                    $stmt->execute();
 
-                    echo "Number of books borrowed: ".$num_borrowed;
+                    echo "<p>Successfully borrowed!</p>";
                 }
-
                 $stmt->close();
                 $conn->close();
-
-                header("Location: /LibSys/user_dashboard.php");
-                exit;
             }
         ?>
     </body>
