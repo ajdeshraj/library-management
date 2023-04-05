@@ -17,7 +17,7 @@
             </div>
             <div class="row">
                 <div class="column">
-                    <a href="add_book.php">
+                    <a href="borrow_book.php">
                         <h2>Borrow Book</h2>
                         <h4>Borrow Books from Library</h4>
                     </a>
