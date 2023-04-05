@@ -4,24 +4,24 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <title>Register</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Register</title>
-        <link rel="stylesheet" href="register.css">
+        <link rel="stylesheet" href="login_css.css">
     </head>
     <body>
-        <form method="post" onsubmit="return validate();"> 
-            <input type="text" required name="username" id="username" placeholder="Username">
-            <label for="username" id="username_msg"></label>
-            <br>
-            <input type="password" required name="password1" id="password1" placeholder="Password">
-            <label for="password" id="password1_msg"></label>
-            <br>
-            <input type="password" required name="password2" id="password2" placeholder="Re-enter Password"> 
-            <br>
-            <input type="submit" value="Register" name="submit">
-        </form>
+        <div class="form" align="center">
+            <h2>Register New User</h2>
+            <form method="post" onsubmit="return validate();"> 
+                <input type="text" required name="username" id="username" placeholder="Username" class="text_form">
+                <label for="username" id="username_msg"></label>
+                <input type="password" required name="password1" id="password1" placeholder="Password" class="text_form">
+                <label for="password" id="password1_msg"></label>
+                <input type="password" required name="password2" id="password2" placeholder="Re-enter Password" class="text_form"> 
+                <input type="submit" value="Register" name="submit" class="button">
+            </form>
+        </div>
         <script>
             function validate()
             {
