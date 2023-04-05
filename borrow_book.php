@@ -15,6 +15,11 @@
             <li><a href = "user_dashboard.php">User Dashboard</a></li>
         </ul>
         <h2>Borrow Book</h2>
+        <form method="post" onsubmit="return true;"> 
+            <input type="text" required name="book_id" id="book_id" placeholder="Enter Book ID of Book to Borrow" class="text_form">
+            <label for="book_id" id="book_id_msg"></label>
+            <input type="submit" value="Borrow" name="submit" class="button">
+        </form>
         <?php
             // MYSQLi connection
             $conn = new mysqli("localhost", "root", "Factoid-Suds-Tavern3", "library");
@@ -49,13 +54,9 @@
             echo "</tbody>
             </table>
             </div>";
-        ?>
-        <form method="post" onsubmit="return true;"> 
-            <input type="text" required name="book_id" id="book_id" placeholder="Enter Book ID of Book to Borrow" class="text_form">
-            <label for="book_id" id="book_id_msg"></label>
-            <input type="submit" value="Borrow" name="submit" class="button">
-        </form>
-        <?php
+            $conn->close();
+
+            
             if(isset($_POST['submit']))
             {
                 $book_id=$_POST["book_id"];
