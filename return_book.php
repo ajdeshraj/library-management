@@ -66,7 +66,7 @@
                 $user_id = $_SESSION["user_id"];
 
                 // MYSQLi connection
-                $conn = new mysqli("localhost", "root", "", "LibSys");
+                $conn = new mysqli("localhost", "root", "Factoid-Suds-Tavern3", "library");
                 if($conn->connect_error)
                 {
                     die("Connection failed: ".$conn->connect_error."<br>");
@@ -101,7 +101,6 @@
                 $result = $stmt->get_result();
                 if($result>0) 
                 {
-
                     $delete = "DELETE FROM borrowings WHERE borrowed_id=? AND borrower_id=?";
                     $stmt = $conn->prepare($delete);
                     $stmt->bind_param("ii", $book_id, $user_id);
@@ -121,6 +120,9 @@
                     $stmt = $conn->prepare($update_books);
                     $stmt->bind_param("ii", $num_borrowed, $book_id);
                     $stmt->execute();
+
+                    $update_ratings = "UPDATE ratings SET b".$book_id." WHERE user_id=".$user_id;
+                    $result_ratings = $conn->query($update_ratings);
 
                     echo "<p>Successfully returned!</p>";
                 }
