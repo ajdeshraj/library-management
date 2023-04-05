@@ -23,16 +23,19 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <title>Library Dues Collection</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Library Dues Collection</title>
+        <link rel="stylesheet" href="table_pages_css.css">
     </head>
     <body>
-        <a href = "admin_dashboard.php">Admin Dashboard</a>
+        <ul>
+            <li><a href = "admin_dashboard.php">Admin Dashboard</a></li>
+        </ul>
         <form method="post">
-            <input type="text" name="book_id">
-            <input type="submit" name="submit" value="Submit">
+            <input type="text" name="book_id" placeholder="Book ID" class="text_form">
+            <input type="submit" name="submit" value="Submit" class="button">
         </form>
         <?php
             if (isset($_POST["submit"]))
@@ -47,13 +50,16 @@
                 if ($result->num_rows > 0)
                 {
                     echo "<table border='1'>
+                    <thead>
                     <tr>
                     <th>Book ID</th>
                     <th>User ID</th>
                     <th>Date of Borrow</th>
                     <th>Date of Return</th>
                     <th>Overdue Fees</th>
-                    </tr>";
+                    </tr>
+                    </thead>
+                    <tbody>";
                     while ($row = $result->fetch_assoc())
                     {
                         echo "<tr>";
@@ -68,7 +74,8 @@
                         $fees = $diff_days*10;
                         echo "<td>".$fees."</td>";
                     }
-                    echo "</table>";
+                    echo "</tbody>
+                    </table>";
                 }
                 else
                 {

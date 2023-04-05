@@ -4,13 +4,16 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <title>Borrow Books</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Borrow Books</title>
+        <link rel="stylesheet" href="table_pages_css.css">
     </head>
     <body>
-        <a href = "user_dashboard.php">User Dashboard</a>
+        <ul>
+            <li><a href = "user_dashboard.php">User Dashboard</a></li>
+        </ul>
         <?php
             // MYSQLi connection
             $conn = new mysqli("localhost", "root", "Factoid-Suds-Tavern3", "library");
@@ -21,7 +24,18 @@
 
             $select = "SELECT * FROM books";
             $result = $conn->query($select);
-            echo "<table border='1'><tr><th>Book ID</th><th>Name</th><th>Author</th><th>Rating</th><th>Borrower ID</th></tr>";
+            echo "<div class='table-container'>
+            <table border='1'>
+            <thead>
+            <tr>
+            <th>Book ID</th>
+            <th>Name</th>
+            <th>Author</th>
+            <th>Rating</th>
+            <th>Borrower ID</th>
+            </tr>
+            </thead>
+            <tbody>";
             if($result->num_rows>0) 
             {
                 while($row = $result->fetch_assoc())
@@ -31,12 +45,14 @@
                     echo "</tr>";
                 }
             }
-            echo "</table>";
+            echo "</tbody>
+            </table>
+            </div>";
         ?>
         <form method="post" onsubmit="return true;"> 
-            <input type="text" required name="book_id" id="book_id" placeholder="Enter Book ID of book to borrow">
+            <input type="text" required name="book_id" id="book_id" placeholder="Enter Book ID of Book to Borrow" class="text_form">
             <label for="book_id" id="book_id_msg"></label>
-            <input type="submit" value="Borrow" name="submit">
+            <input type="submit" value="Borrow" name="submit" class="button">
         </form>
         <?php
             if(isset($_POST['submit']))

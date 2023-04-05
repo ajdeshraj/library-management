@@ -5,13 +5,19 @@
 <html>
     <head>
         <title>Search Books</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="table_pages_css.css">
     </head>
     <body>
-        <a href = "user_dashboard.php">User Dashboard</a>
+        <ul>
+            <li><a href = "user_dashboard.php">User Dashboard</a></li>
+        </ul>
         <form action="search_book.php" method="post">
             <label for="search_term" id="search_label">Enter Book or Author Name</label>
-            <input type="text" id="search_term" name="search_term">
-            <input type="submit" id="submit" name="submit" value="Search"> 
+            <input type="text" id="search_term" name="search_term" class="text_form">
+            <input type="submit" id="submit" name="submit" value="Search" class="button"> 
         </form>
         <?php
             if(isset($_POST['submit']))
@@ -42,7 +48,14 @@
                 if ($result->num_rows > 0)
                 {
                     echo "<table border='1'>
-                    <tr><th>Book Title</th><th>Author</th><th>Rating</th></tr>";
+                        <thead>
+                        <tr>
+                        <th>Book Title</th>
+                        <th>Author</th>
+                        <th>Rating</th>
+                        </tr>
+                        </thead>
+                        <tbody>";
                     while ($row = $result->fetch_assoc())
                     {
                         echo "<tr>";
@@ -51,7 +64,8 @@
                         echo "<td>".$row["avg_rating"]."</td>";
                         echo "</tr>";
                     }
-                    echo "</table>";
+                    echo "</tbody>
+                        </table>";
                 }
                 else
                 {

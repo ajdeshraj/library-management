@@ -5,9 +5,15 @@
 <html>
     <head>
         <title>Book Recommendation</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="table_pages_css.css">
     </head>
     <body>
-        <a href = "user_dashboard.php">User Dashboard</a>
+        <ul>
+            <li><a href = "user_dashboard.php">User Dashboard</a></li>
+        </ul>
         <?php
             // Function to push element into associative array
             function array_push_assoc($array, $key, $value)
@@ -37,12 +43,11 @@
                 $num_books = $row["num_books"]+1;
             }
             
-            $user_ratings_query = "SELECT * FROM ratings WHERE user_id = 0";// .$_SESSION["user_id"];
-            $other_users_ratings_query = "SELECT * FROM ratings WHERE user_id != 0";//.$_SESSION["user_id"];
+            $user_ratings_query = "SELECT * FROM ratings WHERE user_id = ".$_SESSION["user_id"];
+            $other_users_ratings_query = "SELECT * FROM ratings WHERE user_id != ".$_SESSION["user_id"];
             $result_user_ratings = $conn->query($user_ratings_query);
             $result_other_users_ratings = $conn->query($other_users_ratings_query);
             
-            // $common_book_id = array();  // Array to store common books between users
             $user_common_ratings = array(); // Array to store ratings of the common books of current user
             $other_user_common_ratings = array();   // Array to store ratings of the common books of the other user
             $similarity_coefficient = array();  // Array to store similartiy coefficients
@@ -130,12 +135,15 @@
 
             if (sizeof($rec_ids) > 0)
             {
-                echo "<table border = '1'
+                echo "<table border = '1'>
+                    <thead>
                     <tr>
                     <th>Book ID</th>
                     <th>Book Title</th>
                     <th>Book Author</th>
-                    </tr>";
+                    </tr>
+                    </thead>
+                    <tbody>";
                 foreach ($rec_ids as $i)
                 {
                     $rec_query = "SELECT * FROM books WHERE book_id = ".$i;
@@ -147,11 +155,12 @@
                     echo "<td>".$row_recs["author"]."</td>";
                     echo "</tr>";
                 }
-                echo "</table>";
+                echo "</tbody>
+                    </table>";
             }
             else
             {
-                echo "No Recommendations Available At The Moment!<br>";
+                echo "<p>No Recommendations Available At The Moment!</p>";
             }
             
             $conn->close();

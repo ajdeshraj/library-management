@@ -10,13 +10,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <a href = "admin_dashboard.php">Admin Dashboard</a>
+        <ul>
+            <li><a href = "admin_dashboard.php">Admin Dashboard</a></li>
+        </ul>
         <form method="post" onsubmit="return validate()">
-            <input type="text" id="title" name="title" placeholder="Book Title" required>
+            <input type="text" id="title" name="title" placeholder="Book Title" class="text_form" required>
             <label for="title" id="title_msg"></label>
-            <input type="text" id="author" name="author" placeholder="Author of Book" required>
+            <input type="text" id="author" name="author" placeholder="Author of Book" class="text_form" required>
             <label for="author" id="author_msg"></label>
-            <input type="submit" id="submit" name="submit" value="Submit">
+            <input type="submit" id="submit" name="submit" value="Submit" class="button">
         </form>
         <script>
             function validate()
