@@ -14,6 +14,7 @@
         <ul>
             <li><a href = "admin_dashboard.php">Admin Dashboard</a></li>
         </ul>
+        <h2>Add Book</h2>
         <form method="post" onsubmit="return validate()">
             <input type="text" id="title" name="title" placeholder="Book Title" class="text_form" required>
             <label for="title" id="title_msg"></label>

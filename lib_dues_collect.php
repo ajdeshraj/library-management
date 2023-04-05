@@ -33,6 +33,7 @@
         <ul>
             <li><a href = "admin_dashboard.php">Admin Dashboard</a></li>
         </ul>
+        <h2>Collect Library Dues</h2>
         <form method="post">
             <input type="text" name="book_id" placeholder="Book ID" class="text_form">
             <input type="submit" name="submit" value="Submit" class="button">

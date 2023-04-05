@@ -14,6 +14,7 @@
         <ul>
             <li><a href = "user_dashboard.php">User Dashboard</a></li>
         </ul>
+        <h2>Borrow Book</h2>
         <?php
             // MYSQLi connection
             $conn = new mysqli("localhost", "root", "Factoid-Suds-Tavern3", "library");

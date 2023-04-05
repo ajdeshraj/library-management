@@ -14,6 +14,7 @@
         <ul>
             <li><a href = "user_dashboard.php">User Dashboard</a></li>
         </ul>
+        <h2>Search Book</h2>
         <form action="search_book.php" method="post">
             <label for="search_term" id="search_label">Enter Book or Author Name</label>
             <input type="text" id="search_term" name="search_term" class="text_form">

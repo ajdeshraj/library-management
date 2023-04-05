@@ -14,6 +14,7 @@
         <ul>
             <li><a href = "admin_dashboard.php">Admin Dashboard</a></li>
         </ul>
+        <h2>Delete Book</h2>
         <form method="post">
             <input type="text" id="book_del_id" name="book_del_id" placeholder="Book ID of Book to be Deleted" class="text_form" required>
             <label for="book_del_id" id="book_del_msg"></label>
