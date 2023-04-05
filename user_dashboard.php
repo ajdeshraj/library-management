@@ -29,6 +29,12 @@
                     </a>
                 </div>
                 <div class="column">
+                    <a href="search_book.php">
+                        <h2>Search Book</h2>
+                        <h4>Search Available Books in the Library based on Author or Title</h4>
+                    </a>
+                </div>
+                <div class="column">
                     <a href="recommendation_page.php">
                         <h2>Book Recommendations</h2>
                         <h4>Receive Personalized Book Recommendations</h4>
