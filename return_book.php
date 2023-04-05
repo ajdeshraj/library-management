@@ -4,17 +4,19 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <title>Return Books</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Return Books</title>
-        <link rel="stylesheet" href="return_book.css">
+        <link rel="stylesheet" href="table_pages_css.css">
     </head>
     <body>
-        <a href = "user_dashboard.php">User Dashboard</a>
+        <ul>
+            <li><a href = "user_dashboard.php">User Dashboard</a></li>
+        </ul>
         <?php
             // MYSQLi connection
-            $conn = new mysqli("localhost", "root", "", "LibSys");
+            $conn = new mysqli("localhost", "root", "Factoid-Suds-Tavern3", "library");
             if($conn->connect_error)
             {
                 die("Connection failed: ".$conn->connect_error."<br>");
@@ -27,7 +29,18 @@
             $result = $stmt->get_result();
             if($result->num_rows>0) 
             {
-                echo "<table><tr><th>Book ID</th><th>Name</th><th>Author</th><th>Rating</th><th>Borrower ID</th><th>Number of times Borrowed</th></tr>";
+                echo "<table>
+                    <thead>
+                    <tr>
+                    <th>Book ID</th>
+                    <th>Name</th>
+                    <th>Author</th>
+                    <th>Rating</th>
+                    <th>Borrower ID</th>
+                    <th>Number of times Borrowed</th>
+                    </tr>
+                    </thead>
+                    <tbody";
                 while($row = $result->fetch_assoc())
                 {
                     echo "<tr>";
@@ -35,16 +48,15 @@
                     echo "</tr>";
                 }
             }
-            echo "</table>";
+            echo "</tbody>
+                </table>";
         ?>
         <form method="post" onsubmit="return validate();"> 
-            <input type="text" required name="book_id" id="book_id" placeholder="Enter Book ID of book to return">
+            <input type="text" required name="book_id" id="book_id" placeholder="Enter Book ID of book to return" class="text_form">
             <label for="book_id" id="book_id_msg"></label>
-            <br>
-            <input type="text" required name="rating" id="rating" placeholder="Enter rating for the book from 1 to 10">
+            <input type="text" required name="rating" id="rating" placeholder="Enter rating for the book from 1 to 10" class="text_form">
             <label for="rating" id="rating_msg"></label>
-            <br>
-            <input type="submit" value="Return" name="submit">
+            <input type="submit" value="Return" name="submit" class="button">
         </form>
         <?php
             if(isset($_POST['submit']))
