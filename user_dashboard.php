@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="dashboard_css.css">
     </head>
     <body>
-        <div class="page-wrapper>
+        <div class="page-wrapper">
             <div class="heading">
                 <h1>User Dashboard</h1>
             </div>
