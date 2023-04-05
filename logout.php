@@ -11,11 +11,13 @@
     </head>
     <body>
         <?php
-            echo $_SESSION["user_id"];
+            // echo $_SESSION["user_id"];
             session_unset();
             session_destroy();
-            echo $_SESSION["user_id"];
+            // echo $_SESSION["user_id"];
+        
+            echo "<p>Logged out successfully!</p>";
+            header("Location: welcome_page.html");
         ?>
-        <p>Logged out successfully!</p>
     </body>
 </html>
