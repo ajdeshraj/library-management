@@ -43,7 +43,7 @@
                 $row = $result->fetch_assoc();
                 $num_books = $row["num_books"]+1;
             }
-            
+            // echo $_SESSION["user_id"]."<br>";
             $user_ratings_query = "SELECT * FROM ratings WHERE user_id = ".$_SESSION["user_id"];
             $other_users_ratings_query = "SELECT * FROM ratings WHERE user_id != ".$_SESSION["user_id"];
             $result_user_ratings = $conn->query($user_ratings_query);
@@ -55,9 +55,10 @@
 
             $user_row = $result_user_ratings->fetch_assoc();
             if ($result_other_users_ratings->num_rows > 0)
-            {   
+            {   // echo $_SESSION["user_id"]."<br>";
                 while ($other_users_row = $result_other_users_ratings->fetch_assoc())
                 {
+                    // echo $_SESSION["user_id"]."<br>";
                     // Resetting arrays for each combination of users
                     // unset($common_book_id);
                     // unset($user_common_ratings);
