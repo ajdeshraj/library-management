@@ -55,31 +55,21 @@
 
             $user_row = $result_user_ratings->fetch_assoc();
             if ($result_other_users_ratings->num_rows > 0)
-            {   // echo $_SESSION["user_id"]."<br>";
+            {   
                 while ($other_users_row = $result_other_users_ratings->fetch_assoc())
                 {
-                    // echo $_SESSION["user_id"]."<br>";
-                    // Resetting arrays for each combination of users
-                    // unset($common_book_id);
-                    // unset($user_common_ratings);
-                    // unset($other_user_common_ratings);
                     array_diff($user_common_ratings, $user_common_ratings);
                     array_diff($other_user_common_ratings, $other_user_common_ratings);
-                    // $user_common_ratings = array(); 
-                    // $other_user_common_ratings = array(); 
-
+                    
                     for ($i = 0; $i < $num_books; $i++)
                     {   
                         if ($user_row["b".$i] != 0 && $other_users_row["b".$i] != 0)
                         {
-                            // array_push($common_book_id, $i);
                             array_push($user_common_ratings, $user_row["b".$i]);
                             array_push($other_user_common_ratings, $other_users_row["b".$i]);
                         }
                     }
                     
-                    // echo "Ratings".$user_common_ratings."<br>".$other_user_common_ratings."<br>";
-                    // Calculating Cosine Similarity
                     $dot_product = 0;
                     $norm_user = 0;
                     $norm_other_user = 0;
@@ -100,18 +90,11 @@
                     $similarity_coefficient = array_push_assoc($similarity_coefficient, $other_users_row["user_id"], $sim);           
                 }
             }
-            
-            // echo $similarity_coefficient."<br>";
-            // foreach($similarity_coefficient as $x => $x_value) {
-            //     echo "Key=" . $x . ", Value=" . $x_value;
-            //     echo "<br>";
-            //   }
 
             $rec_ids = array();
             $result_other_users_ratings = $conn->query($other_users_ratings_query);
             if ($result_other_users_ratings->num_rows > 0)
             {   
-                // echo "<script>console.log('".$result_other_users_ratings->fetch_assoc()."')</script>";
                 while ($other_user_row = $result_other_users_ratings->fetch_assoc())
                 {   
                     
@@ -133,8 +116,7 @@
                     }
                 }
             }
-            // echo $rec_ids."<br>";
-
+            
             if (sizeof($rec_ids) > 0)
             {
                 echo "<table border = '1'>
