@@ -55,7 +55,7 @@ a
 
 .column:hover
 {
-    transform: scale(1.25);
+    transform: scale(1.1);
     background-color: #5a01a7;
     color: white;
     transition: 0.3s;
