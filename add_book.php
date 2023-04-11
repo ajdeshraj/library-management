@@ -70,10 +70,13 @@
                     }
                 }
 
-                $insert_query = "INSERT INTO books (book_id, book_name, author) VALUES (?, ?, ?)";
+                $insert_query = "INSERT INTO books (book_id, book_name, author, avg_rating) VALUES (?, ?, ?, 0.000)";
                 $stmt = $conn->prepare($insert_query);
                 $stmt->bind_param("iss", $book_id, $book_title, $book_author);
                 $stmt->execute();
+
+                $update_query = "ALTER TABLE ratings ADD COLUMN "."b".$book_id." INTEGER DEFAULT 0";
+                $result = $conn->query($update_query);
 
                 // header("Location: admin_dashboard.php");
                 // exit;

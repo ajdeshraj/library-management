@@ -121,7 +121,7 @@
                     $stmt->bind_param("ii", $num_borrowed, $book_id);
                     $stmt->execute();
 
-                    $update_ratings = "UPDATE ratings SET b".$book_id." = ".$rating."WHERE user_id=".$user_id;
+                    $update_ratings = "UPDATE ratings SET b".$book_id." = ".$rating." WHERE user_id=".$user_id;
                     $result_ratings = $conn->query($update_ratings);
 
                     echo "<p>Successfully returned!</p>";

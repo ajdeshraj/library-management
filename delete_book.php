@@ -79,6 +79,10 @@
                 $stmt = $conn->prepare($delete);
                 $stmt->bind_param("i", $book_id);
                 $stmt->execute();
+
+                $del_id = "b".$book_id;
+                $update_ratings = "ALTER TABLE ratings DROP COLUMN ".$del_id;
+                $result_update = $conn->query($update_ratings);
                 
                 echo "<p>Book Deleted</p>";
                 stmt->close();
